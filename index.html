@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="css/core.css">
+
+</head>
+<body>
+
+	<div id="carta">
+		<div class="front">
+		 	<div class="card">
+  		</div>
+			<!-- <img src="media/card.png" width="160px" height="238px" alt=""> -->
+		</div>
+  	<div class="back">
+    <img src="http://media.services.zam.com/v1/media/byName/hs/cards/enus/CFM_852.png" width="160px" height="238px" id="pruebaimg" alt="">
+  	</div>
+</div>
+<!-- <div id="card2" class="card"></div> -->
+
+	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>
+	<!-- <script type="text/javascript" src="js/card.min.js"></script> -->
+	<!-- <script type="text/javascript" src="js/core.js"></script> -->
+	<script>
+	$("#carta").flip();
+	$("#carta").hover(function () {
+			$(this).toggleClass("glow");
+	});
+	</script>
+</body>
+</html>
