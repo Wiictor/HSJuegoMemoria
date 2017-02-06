@@ -26,26 +26,26 @@ html, body {
 box-shadow:0 0 60px #6fa7e2;
 }
 #carta{
-	width: 160px;
-	height: 238px;
+	width: 140px;
+	height: 218px;
 	top: 20%;
 	left: 45%;
 }
 #pruebaimg{
-	/*margin-left: -34px;*/
+	margin-left: -7%;
 	/*margin-right: -34px;*/
-	/*margin-top: -50px;*/
+	margin-top: -28%;
 	/*margin-bottom: -50px;*/
 }
 .card {
-	position: absolute;
-	/*top: 50%;
-	left: 50%;*/
+	position: relative;
+	margin: auto;
+	/*margin-top:;*/
 	width: 230px;
 	height: 342px;
 
-	width: 160px;
-	height: 238px;
+	width: 140px;
+	height: 218px;
 	z-index: 1;
 	background-image: url('../media/card.png');
 	background-size: 100% 100%;
