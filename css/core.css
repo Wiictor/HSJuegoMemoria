@@ -21,9 +21,9 @@ html, body {
 	/*background: transparent url("http://eu.battle.net/hearthstone/static/images/body-content-bg.jpg") 50% 0 repeat-y;*/
 }
 .glow{
-  -webkit-box-shadow:0 0 40px #6fa7e2;
--moz-box-shadow: 0 0 40px #6fa7e2;
-box-shadow:0 0 60px #6fa7e2;
+  -webkit-box-shadow:0 0 40px #ffd700;
+-moz-box-shadow: 0 0 40px #ffd700;
+box-shadow:0 0 60px #ffd700;
 }
 #carta{
 	width: 140px;
@@ -32,7 +32,7 @@ box-shadow:0 0 60px #6fa7e2;
 	left: 45%;
 }
 #pruebaimg{
-	margin-left: -7%;
+	margin-left: -10%;
 	/*margin-right: -34px;*/
 	margin-top: -28%;
 	/*margin-bottom: -50px;*/
