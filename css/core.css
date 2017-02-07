@@ -20,22 +20,47 @@ html, body {
 
 	/*background: transparent url("http://eu.battle.net/hearthstone/static/images/body-content-bg.jpg") 50% 0 repeat-y;*/
 }
-.glow{
-  -webkit-box-shadow:0 0 40px #ffd700;
--moz-box-shadow: 0 0 40px #ffd700;
-box-shadow:0 0 60px #ffd700;
+
+.glowCommon{
+  /*-webkit-box-shadow:0 0 80px #f7f7f7;
+-moz-box-shadow: 0 0 80px #f7f7f7;
+box-shadow:0 0 80px #f7f7f7;*/
+-webkit-animation: neonCommon 1.5s ease-in-out infinite alternate;
+	animation: neonCommon 1.5s ease-in-out infinite alternate;
+}
+.glowRare{
+  /*-webkit-box-shadow:0 0 80px #115c93;
+-moz-box-shadow: 0 0 80px #115c93;
+box-shadow:0 0 80px #115c93;*/
+-webkit-animation: neonRare 1.5s ease-in-out infinite alternate;
+	animation: neonRare 1.5s ease-in-out infinite alternate;
+}
+.glowEpic{
+  /*-webkit-box-shadow:0 0 80px #fb1fff;
+-moz-box-shadow: 0 0 80px #fb1fff;
+box-shadow:0 0 80px #fb1fff;*/
+-webkit-animation: neonEpic 1.5s ease-in-out infinite alternate;
+	animation: neonEpic 1.5s ease-in-out infinite alternate;
+}
+.glowLegendary{
+  /*-webkit-box-shadow:0 0 80px #ffd700;
+-moz-box-shadow: 0 0 80px #ffd700;
+box-shadow:0 0 80px #ffd700;*/
+-webkit-animation: neonLegendary 1.5s ease-in-out infinite alternate;
+	animation: neonLegendary 1.5s ease-in-out infinite alternate;
 }
 .cartahs{
 	width: 140px;
 	height: 218px;
 	margin-top: 5%;
 	margin-left: 5%;
+	float: left;
 }
 front,.back{
 	width: 140px;
 	height: 218px;
 }
-#pruebaimg{
+.pruebaimg{
 	margin-left: -10%;
 	/*margin-right: -34px;*/
 	margin-top: -28%;
@@ -94,6 +119,23 @@ front,.back{
 .card:hover, .cartahs:hover {
 	cursor: pointer;
 }
+.card:hover, .cartahs:hover{
+	-webkit-transform: scale(1.1);
+-moz-transform: scale(1.1);
+-o-transform: scale(1.1);
+transform: scale(1.1);
+transition: all 0.3s;
+-webkit-transition: all 0.3s;
+}
+#nextCard:hover{
+	-webkit-transform: scale(1.2);
+-moz-transform: scale(1.2);
+-o-transform: scale(1.2);
+transform: scale(1.2);
+transition: all 0.3s;
+-webkit-transition: all 0.3s;
+}
+
 
 #star {
 	display: none;
@@ -123,3 +165,35 @@ front,.back{
 		opacity: 1;
 	}
 }
+@keyframes neonCommon {
+  from {
+    box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #f7f7f7, 0 0 20px #f7f7f7, 0 0 35px #f7f7f7, 0 0 40px #f7f7f7, 0 0 50px #f7f7f7, 0 0 75px #f7f7f7;
+  }
+  to {
+    box-shadow: 0 0 2.5px #fff, 0 0 5px #fff, 0 0 7.5px #f7f7f7, 0 0 10px #f7f7f7, 0 0 17.5px #f7f7f7, 0 0 20px #f7f7f7, 0 0 25px #f7f7f7, 0 0 37.5px #f7f7f7;
+  }
+}
+@keyframes neonRare {
+  from {
+    box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #228DFF, 0 0 20px #228DFF, 0 0 35px #228DFF, 0 0 40px #228DFF, 0 0 50px #228DFF, 0 0 75px #228DFF;
+  }
+  to {
+    box-shadow: 0 0 2.5px #fff, 0 0 5px #fff, 0 0 7.5px #228DFF, 0 0 10px #228DFF, 0 0 17.5px #228DFF, 0 0 20px #228DFF, 0 0 25px #228DFF, 0 0 37.5px #228DFF;
+  }
+}
+	@keyframes neonEpic {
+	  from {
+	    box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #FB1FFF, 0 0 20px #FB1FFF, 0 0 35px #FB1FFF, 0 0 40px #FB1FFF, 0 0 50px #FB1FFF, 0 0 75px #FB1FFF;
+	  }
+	  to {
+	    box-shadow: 0 0 2.5px #fff, 0 0 5px #fff, 0 0 7.5px #FB1FFF, 0 0 10px #FB1FFF, 0 0 17.5px #FB1FFF, 0 0 20px #FB1FFF, 0 0 25px #FB1FFF, 0 0 37.5px #FB1FFF;
+	  }
+	}
+		@keyframes neonLegendary {
+		  from {
+		    box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #FFD700, 0 0 20px #FFD700, 0 0 35px #FFD700, 0 0 40px #FFD700, 0 0 50px #FFD700, 0 0 75px #FFD700;
+		  }
+		  to {
+		    box-shadow: 0 0 2.5px #fff, 0 0 5px #fff, 0 0 7.5px #FFD700, 0 0 10px #FFD700, 0 0 17.5px #FFD700, 0 0 20px #FFD700, 0 0 25px #FFD700, 0 0 37.5px #FFD700;
+		  }
+		}

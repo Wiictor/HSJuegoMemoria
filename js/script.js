@@ -52,12 +52,12 @@ function ImprimirObjeto(o) {
 function showCard(cardNo, string){
   var obj = cards[cardNo];
   var img = "#card-image"+string;
-  alert(obj.imgGold);
+  //alert(obj.imgGold);
   $("#"+string).find('.back img').attr('src', obj.img);
   // $("#"+string).html(obj.name);
   // $("#card-type").text(obj.type);
   // $("#card-faction").text(obj.faction);
-  // $("#card-rarity").text(obj.rarity);
+  $("#"+string).attr('data-rarity',obj.rarity);
   // $("#player-class").text(obj.playerClass);
    $("#"+string).attr('data-cost',obj.cost);
 }
@@ -72,22 +72,31 @@ function flattenCards(data){
     }
     return result;
 }
-
 getCardData(); // Start loading card data ASAP - subsequent calls will return the same promise anyway
 
 $(document).ready(function() {
   $("#container").hide();
+  $("#nextCard").attr('disabled',true);
   getCardData()
     .done(function(data){
         $("#nextCard").text("Next");
+        $(".cartahs").flip();
        cards = flattenCards(data);
        showCardRandom();
        $("#container").slideDown();
     });
+  var botonaudio = document.createElement('audio');
+  $("#nextCard").mouseenter(function() {
+    botonaudio.src = "sounds/Hub_Mouseover.ogg";
+    botonaudio.play();
+  });
    $('#nextCard').on('click',function(){
-     showCardRandom();
+     //showCardRandom();
+     botonaudio.src = "sounds/Hub_Click.ogg";
+     botonaudio.play();
      $(".cartahs").flip(false);
-
-     setTimeout(function(){ $(".cartahs").flip(true); }, 1000);
+    //  habilitarCartas();
+     setTimeout(function(){ showCardRandom(); }, 1000);
+     $("#nextCard").attr('disabled',true);
    });
 });

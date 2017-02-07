@@ -9,59 +9,70 @@
 </head>
 <body>
 	<button id="nextCard" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">Loading Data...</button>
+	<div id="rare"></div>
 	<div id="container">
-<div class="mdl-grid">
-	<div id="1" class="mdl-cell mdl-cell--4-col cartahs">
+<!-- <div class="mdl-grid">
+	<div class="mdl-cell mdl-cell--4-col"> -->
+		<div  id="1" class="cartahs">
+			<div class="front">
+			 	<div class="card">
+	  		</div>
+				<!-- <img src="media/card.png" width="160px" height="238px" alt=""> -->
+			</div>
+	  	<div class="back">
+	    <img src="" width="170px" height="270px" class="pruebaimg" alt="">
+	  	</div>
+		</div>
+<!-- </div> -->
+<!-- <div class="mdl-cell mdl-cell--4-col"> -->
+	<div  id="2" class="cartahs">
 		<div class="front">
-		 	<div class="card">
-  		</div>
+			<div class="card">
+			</div>
 			<!-- <img src="media/card.png" width="160px" height="238px" alt=""> -->
 		</div>
-  	<div class="back">
-    <img src="" width="170px" height="270px" id="pruebaimg" alt="">
-  	</div>
-</div>
-<div id="2" class="mdl-cell mdl-cell--4-col cartahs">
-	<div class="front">
-		<div class="card">
+		<div class="back">
+		<img src="" width="170px" height="270px" class="pruebaimg" alt="">
 		</div>
-		<!-- <img src="media/card.png" width="160px" height="238px" alt=""> -->
 	</div>
-	<div class="back">
-	<img src="" width="170px" height="270px" id="pruebaimg" alt="">
-	</div>
-</div>
-<div id="3" class="mdl-cell mdl-cell--4-col cartahs">
-	<div class="front">
-		<div class="card">
+<!-- </div> -->
+<!-- <div class="mdl-cell mdl-cell--4-col"> -->
+	<div  id="3" class="cartahs">
+		<div class="front">
+			<div class="card">
+			</div>
+			<!-- <img src="media/card.png" width="160px" height="238px" alt=""> -->
 		</div>
-		<!-- <img src="media/card.png" width="160px" height="238px" alt=""> -->
-	</div>
-	<div class="back">
-	<img src="" width="170px" height="270px" id="pruebaimg" alt="">
-	</div>
-</div>
-<div id="4" class="mdl-cell mdl-cell--4-col cartahs">
-	<div class="front">
-		<div class="card">
+		<div class="back">
+		<img src="" width="170px" height="270px" class="pruebaimg" alt="">
 		</div>
-		<!-- <img src="media/card.png" width="160px" height="238px" alt=""> -->
 	</div>
-	<div class="back">
-	<img src="" width="170px" height="270px" id="pruebaimg" alt="">
-	</div>
-</div>
-<div id="5" class="mdl-cell mdl-cell--4-col cartahs">
-	<div class="front">
-		<div class="card">
+<!-- </div> -->
+<!-- <div class="mdl-cell mdl-cell--4-col"> -->
+	<div  id="4" class="cartahs">
+		<div class="front">
+			<div class="card">
+			</div>
+			<!-- <img src="media/card.png" width="160px" height="238px" alt=""> -->
 		</div>
-		<!-- <img src="media/card.png" width="160px" height="238px" alt=""> -->
+		<div class="back">
+		<img src="" width="170px" height="270px" class="pruebaimg" alt="">
+		</div>
 	</div>
-	<div class="back">
-	<img src="http://media.services.zam.com/v1/media/byName/hs/cards/enus/animated/AT_018_premium.gif" width="170px" height="270px" id="pruebaimg" alt="">
+<!-- </div> -->
+<!-- <div class="mdl-cell mdl-cell--4-col"> -->
+	<div  id="5" class="cartahs">
+		<div class="front">
+			<div class="card">
+			</div>
+			<!-- <img src="media/card.png" width="160px" height="238px" alt=""> -->
+		</div>
+		<div class="back">
+		<img src="http://media.services.zam.com/v1/media/byName/hs/cards/enus/animated/AT_018_premium.gif" width="170px" height="270px" class="pruebaimg" alt="">
+		</div>
 	</div>
-</div>
-</div>
+<!-- </div> -->
+<!-- </div> -->
 </div>
 <!-- <div id="card2" class="card"></div> -->
 	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
@@ -70,10 +81,108 @@
 	<!-- <script type="text/javascript" src="js/card.min.js"></script> -->
 	<!-- <script type="text/javascript" src="js/core.js"></script> -->
 	<script>
+	function allFlipped(){
+		var sol = false;
+		var cont = 0;
+		for(var l=1;l<6;l++){
+			var flip = $("#"+l).data("flip-model");
+			if(flip.isFlipped == true){
+				cont++;
+			}
+		}
+		if(cont==5){
+			sol = true;
+		}
+		return sol;
+	}
+	$(document).ready(function(){
+
+		var audio = document.createElement('audio');
+		var audio2 = document.createElement('audio');
+		var audio3 = document.createElement('audio');
 	$(".cartahs").flip();
-	// $("#carta").hover(function () {
-	// 		$(this).toggleClass("glow");
-	// });
+	$(".cartahs").mouseenter(function () {
+		audio3.src = "sounds/card_mouse_over.ogg";
+		audio3.play();
+		var flip = $(this).data("flip-model");
+		if(flip.isFlipped == false){
+			if($(this).attr('data-rarity') == "Common" || $(this).attr('data-rarity') == "Free"){
+			$(this).addClass("glowCommon");
+		}
+			if($(this).attr('data-rarity') == "Rare"){
+			$(this).addClass("glowRare");
+			audio.src = 'sounds/card_aura_rare_lp.ogg';
+			audio.loop = true;
+		}
+			if($(this).attr('data-rarity') == "Epic"){
+			$(this).addClass("glowEpic");
+			audio.src = 'sounds/card_aura_epic_lp.ogg';
+			audio.loop = true;
+		}
+			if($(this).attr('data-rarity') == "Legendary"){
+			$(this).addClass("glowLegendary");
+				audio.src = 'sounds/card_aura_legendary_lp.ogg';
+				audio.loop = true;
+		}
+		audio.play();
+		}
+		else{
+			$(this).removeClass("glowCommon");
+			$(this).removeClass("glowRare");
+			$(this).removeClass("glowEpic");
+			$(this).removeClass("glowLegendary");
+			audio.src = '';
+			audio.loop = false;
+		}
+	});
+	$(".cartahs").mouseout(function () {
+		$(this).removeClass("glowCommon");
+		$(this).removeClass("glowRare");
+		$(this).removeClass("glowEpic");
+		$(this).removeClass("glowLegendary");
+		audio.src = '';
+		audio3.src = "sounds/card_mouse_away.ogg";
+		audio3.play();
+	});
+	$(".cartahs").on('click',function () {
+		var flip = $(this).data("flip-model");
+		if(flip.isFlipped == true){
+		//$(this).off("click.flip"); ################ FALTA POR ARREGLAR ###############
+			audio.src = '';
+			if($(this).attr('data-rarity') == "Common" || $(this).attr('data-rarity') == "Free"){
+			audio2.src = 'sounds/card_turn_over_normal.ogg';
+		}
+			if($(this).attr('data-rarity') == "Rare"){
+			audio2.src = 'sounds/card_turn_over_rare.ogg';
+		}
+			if($(this).attr('data-rarity') == "Epic"){
+			audio2.src = 'sounds/card_turn_over_epic.ogg';
+		}
+			if($(this).attr('data-rarity') == "Legendary"){
+				audio2.src = 'sounds/card_turn_over_legendary.ogg';
+		}
+		audio2.play();
+		}
+
+		if(allFlipped() == true){
+			$("#nextCard").attr("disabled", false);
+		}
+		else{
+			$("#nextCard").attr("disabled", true);
+		}
+		// $(this).off(".flip");
+	});
+
+	// $('#nextCard').on('click',function(){ ################ FALTA POR ARREGLAR ###############
+		// $(".cartahs").on(flip());
+		// $('#2').on('click.flip');
+		// $('.cartahs').on('click',function(){
+		  //alert('Welcome to CodexWorld!');
+			// $(this).on("click.flip");
+		// });
+		//$(this).attr('disabled', false);
+		// });
+	});
 	</script>
 </body>
 </html>
