@@ -25,11 +25,15 @@ html, body {
 -moz-box-shadow: 0 0 40px #ffd700;
 box-shadow:0 0 60px #ffd700;
 }
-#carta{
+.cartahs{
 	width: 140px;
 	height: 218px;
-	top: 20%;
-	left: 45%;
+	margin-top: 5%;
+	margin-left: 5%;
+}
+front,.back{
+	width: 140px;
+	height: 218px;
 }
 #pruebaimg{
 	margin-left: -10%;
@@ -87,7 +91,7 @@ box-shadow:0 0 60px #ffd700;
     -moz-animation-direction: alternate-reverse;
     animation-direction: alternate-reverse;
 }
-.card:hover, #carta:hover {
+.card:hover, .cartahs:hover {
 	cursor: pointer;
 }
 
