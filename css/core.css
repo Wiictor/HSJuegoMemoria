@@ -14,51 +14,64 @@ html, body {
 	height: 100%;
 	text-align: center;
 	background-color: #0F1119;
-
+	font-size: 16px;
 	perspective : 2000px;
 	perspective-origin : 50% 50%;
-
-	/*background: transparent url("http://eu.battle.net/hearthstone/static/images/body-content-bg.jpg") 50% 0 repeat-y;*/
 }
-
+#container{
+	position:absolute;
+	margin-top:-0.5%;
+	padding:0;
+	margin-top: -3,5%;
+	width: 120em;
+	height: 60em;
+	background: url('../media/board.png') no-repeat;
+	background-size:cover;
+}
+#nextCard{
+	position:relative;
+	margin-top: 1%;
+}
+.pruebaimg{
+	width:10.625em;
+	height:16.875em;
+}
+.cartahs,.front,.back{
+	width: 8.750em;
+	height: 13.625em;
+}
 .glowCommon{
-  /*-webkit-box-shadow:0 0 80px #f7f7f7;
--moz-box-shadow: 0 0 80px #f7f7f7;
-box-shadow:0 0 80px #f7f7f7;*/
 -webkit-animation: neonCommon 1.5s ease-in-out infinite alternate;
 	animation: neonCommon 1.5s ease-in-out infinite alternate;
 }
 .glowRare{
-  /*-webkit-box-shadow:0 0 80px #115c93;
--moz-box-shadow: 0 0 80px #115c93;
-box-shadow:0 0 80px #115c93;*/
+
 -webkit-animation: neonRare 1.5s ease-in-out infinite alternate;
 	animation: neonRare 1.5s ease-in-out infinite alternate;
 }
 .glowEpic{
-  /*-webkit-box-shadow:0 0 80px #fb1fff;
--moz-box-shadow: 0 0 80px #fb1fff;
-box-shadow:0 0 80px #fb1fff;*/
 -webkit-animation: neonEpic 1.5s ease-in-out infinite alternate;
 	animation: neonEpic 1.5s ease-in-out infinite alternate;
 }
 .glowLegendary{
-  /*-webkit-box-shadow:0 0 80px #ffd700;
--moz-box-shadow: 0 0 80px #ffd700;
-box-shadow:0 0 80px #ffd700;*/
 -webkit-animation: neonLegendary 1.5s ease-in-out infinite alternate;
 	animation: neonLegendary 1.5s ease-in-out infinite alternate;
 }
-.cartahs{
-	width: 140px;
-	height: 218px;
-	margin-top: 5%;
-	margin-left: 5%;
-	float: left;
+.cardcontainer1{
+	margin-left: 25%;
+	margin-top: 11%;
+	width:100%;
+	clear:both;
 }
-front,.back{
-	width: 140px;
-	height: 218px;
+.cardcontainer2{
+	margin-left: 25%;
+	margin-top: 25%;
+	width:100%;
+}
+.cartahs{
+	position:absolute;
+	margin-left: 2%;
+	float: left;
 }
 .pruebaimg{
 	margin-left: -10%;
@@ -70,11 +83,8 @@ front,.back{
 	position: relative;
 	margin: auto;
 	/*margin-top:;*/
-	width: 230px;
-	height: 342px;
-
-	width: 140px;
-	height: 218px;
+	width: 100%;
+	height: 100%;
 	z-index: 1;
 	background-image: url('../media/card.png');
 	background-size: 100% 100%;
@@ -95,8 +105,10 @@ front,.back{
     background-repeat: no-repeat;
     background-size: 100%;
     position: absolute;
-    width: 68px;
-    height: 68px;
+    /*width: 68px;
+    height: 68px;*/
+		width: 48%;
+    height: 30%;
     border-radius: 100%;
     box-shadow: 0 0 2px rgb(255, 255, 255) inset, 0 0 5px rgb(255, 235, 0), 0 0 10px rgb(255, 129, 0);
     top: 0;

@@ -4,15 +4,17 @@ var a = {};
 function getCardData() {
   if(!dataPromise){
     dataPromise = $.ajax({ // Store jQuery promise so that we can return it for subsequent calls ensuring only one AJAX request is made
-      url: 'https://omgvamp-hearthstone-v1.p.mashape.com/cards?collectible=1',
+      // url: 'https://omgvamp-hearthstone-v1.p.mashape.com/cards?collectible=1',
+      url: 'datos.json',
       type: 'GET',
       dataType: 'json',
-      beforeSend: function(xhr) {
-        xhr.setRequestHeader("X-Mashape-Authorization", "mXtnPm3ltOmshc9dQJjtVdKzfnhbp14UZncjsnfzwvp6uLiMwH");
-      },
+      // beforeSend: function(xhr) {
+      //   xhr.setRequestHeader("X-Mashape-Authorization", "mXtnPm3ltOmshc9dQJjtVdKzfnhbp14UZncjsnfzwvp6uLiMwH");
+      // },
       async:true
     });
   }
+
   return dataPromise;
 }
 function showCardRandom(){
@@ -49,17 +51,43 @@ function ImprimirObjeto(o) {
     }
     $("#contenido").html(salida);
 }
+
+var repuesto = ["media/REP_1.png","media/REP_2.png","media/REP_3.png","media/REP_4.png","media/REP_5.png"]; //Si alguna imagen falla, tener hasta 5 repuestos alojados en el servidor
+var nrepuesto = 0; //Numero auxiliar de carta de repuesto
 function showCard(cardNo, string){
   var obj = cards[cardNo];
-  var img = "#card-image"+string;
-  //alert(obj.imgGold);
+  var string2 = string+5;
   $("#"+string).find('.back img').attr('src', obj.img);
+  $("#"+string).attr('data-rarity',obj.rarity);
+  $("#"+string).attr('data-cost',obj.cost);
+  $("#"+string).find('.back img').attr('src', obj.img);
+  $("#"+string).attr('data-rarity',obj.rarity);
+  $("#"+string).attr('data-cost',obj.cost);
+  $("#"+string2).find('.back img').attr('src', obj.img);
+  $("#"+string2).attr('data-rarity',obj.rarity);
+  $("#"+string2).attr('data-cost',obj.cost);
+  $("#"+string2).find('.back img').attr('src', obj.img);
+  $("#"+string2).attr('data-rarity',obj.rarity);
+  $("#"+string2).attr('data-cost',obj.cost);
   // $("#"+string).html(obj.name);
   // $("#card-type").text(obj.type);
   // $("#card-faction").text(obj.faction);
-  $("#"+string).attr('data-rarity',obj.rarity);
   // $("#player-class").text(obj.playerClass);
-   $("#"+string).attr('data-cost',obj.cost);
+  $("#"+string).find('.back img').on("error",function() {
+    $( this ).attr( "src", repuesto[nrepuesto]);
+    $("#"+string).attr('data-cost',"0");
+    $("#"+string).attr('data-rarity',"Common");
+    $("#"+string2).attr('data-cost',"0");
+    $("#"+string2).attr('data-rarity',"Common");
+    if(nrepuesto==2){
+        $("#"+string).attr('data-rarity',"Epic");
+        $("#"+string2).attr('data-rarity',"Epic");
+    }
+    nrepuesto++;
+    if(nrepuesto>4){
+      nrepuesto = 0;
+    }
+  });
 }
 
 function flattenCards(data){
@@ -67,7 +95,9 @@ function flattenCards(data){
     var result = [];
     for (var set in data) {
       for (var i = 0; i < data[set].length; i++) {
+        if(data[set][i].type != "Hero" && data[set][i].rarity != "Free" ){
         result.push(data[set][i]);
+        }
       }
     }
     return result;
@@ -95,7 +125,6 @@ $(document).ready(function() {
      botonaudio.src = "sounds/Hub_Click.ogg";
      botonaudio.play();
      $(".cartahs").flip(false);
-    //  habilitarCartas();
      setTimeout(function(){ showCardRandom(); }, 1000);
      $("#nextCard").attr('disabled',true);
    });
