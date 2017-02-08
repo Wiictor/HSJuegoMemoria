@@ -58,15 +58,11 @@ function showCard(cardNo, string){
   var obj = cards[cardNo];
   var string2 = string+5;
   $("#"+string).find('.back img').attr('src', obj.img);
-  $("#"+string).attr('data-rarity',obj.rarity);
-  $("#"+string).attr('data-cost',obj.cost);
-  $("#"+string).find('.back img').attr('src', obj.img);
+  $("#"+string).attr('data-id',obj.cardId);
   $("#"+string).attr('data-rarity',obj.rarity);
   $("#"+string).attr('data-cost',obj.cost);
   $("#"+string2).find('.back img').attr('src', obj.img);
-  $("#"+string2).attr('data-rarity',obj.rarity);
-  $("#"+string2).attr('data-cost',obj.cost);
-  $("#"+string2).find('.back img').attr('src', obj.img);
+  $("#"+string2).attr('data-id',obj.cardId);
   $("#"+string2).attr('data-rarity',obj.rarity);
   $("#"+string2).attr('data-cost',obj.cost);
   // $("#"+string).html(obj.name);
@@ -102,6 +98,31 @@ function flattenCards(data){
     }
     return result;
 }
+function disorderDivs(){
+  var array = [1,2,3,4,5,6,7,8,9,10];
+  //alert(array);
+  for(var i=0; i<5;i++){
+    var random1 = Math.floor(Math.random() * 10)+1;
+    while($.inArray(random1,array) == -1){
+       random1 = Math.floor(Math.random() * 10)+1;
+    }
+    array.splice(array.indexOf(random1),1);
+    var random2 = Math.floor(Math.random() * 10)+1;
+    while($.inArray(random2,array) == -1){
+      random2 = Math.floor(Math.random() * 10)+1;
+    }
+    array.splice(array.indexOf(random2),1);
+    //alert("n1: " + random1 + " n2: " + random2 + " array: " + array);
+    changeDivposition(random1,random2);
+  }
+}
+function changeDivposition(div1,div2){
+  //alert(div1 + " " + div2);
+  $("#"+div1).swap({
+    target: ""+div2,
+    speed: 0
+  });
+}
 getCardData(); // Start loading card data ASAP - subsequent calls will return the same promise anyway
 
 $(document).ready(function() {
@@ -113,6 +134,7 @@ $(document).ready(function() {
         $(".cartahs").flip();
        cards = flattenCards(data);
        showCardRandom();
+       disorderDivs();
        $("#container").slideDown();
     });
   var botonaudio = document.createElement('audio');
