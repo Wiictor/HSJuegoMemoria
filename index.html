@@ -108,72 +108,10 @@
 </div>
 </div>
 </div>
-<!-- <div id="card2" class="card"></div> -->
 	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 	<script src="http://biostall.com/wp-content/uploads/2010/07/jquery-swapsies.js"></script>
 	<script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>
 	<script src="js/script.js"></script>
 	<script src="js/script2.js"></script>
-	<!-- <script type="text/javascript" src="js/card.min.js"></script> -->
-	<!-- <script type="text/javascript" src="js/core.js"></script> -->
-	<script>
-function swapCartas(){
-	var random = Math.floor(Math.random()*(3-1+1)+1);
-	if(random==3){
-		$("#1").swap({
-			target: "6",
-			speed: 1
-		});
-		setTimeout(function(){
-			$("#3").swap({
-			target: "8",
-			speed: 1
-			});
-		},500);
-		setTimeout(function(){
-			$("#5").swap({
-			target: "10",
-			speed: 1
-			});
-		},900);
-	}
-	else{
-		if(random==2){
-			$("#2").swap({
-				target: "7",
-				speed: 1
-			});
-			setTimeout(function(){
-				$("#4").swap({
-				target: "9",
-				speed: 1
-				});
-			},800);
-	}
-	else{
-			$("#1").swap({
-				target: "6",
-				speed: 1
-			});
-			setTimeout(function(){
-				$("#2").swap({
-				target: "7",
-				speed: 1
-				});
-			},500);
-			setTimeout(function(){
-				$("#4").swap({
-				target: "9",
-				speed: 1
-				});
-			},900);
-	}
-	}
-}
-// swapCartas();
-		$("#nextCard").on("click",function(){
-			// swapCartas();
-});
-	</script>
 </body>
 </html>

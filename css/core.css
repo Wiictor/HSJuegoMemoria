@@ -17,6 +17,7 @@ html, body {
 	font-size: 16px;
 	perspective : 2000px;
 	perspective-origin : 50% 50%;
+	cursor: url(../media/hand.cur),default;
 }
 #container{
 	position:absolute;
@@ -129,8 +130,14 @@ html, body {
     -moz-animation-direction: alternate-reverse;
     animation-direction: alternate-reverse;
 }
-.card:hover, .cartahs:hover {
-	cursor: pointer;
+button:hover, #nextCard:hover {
+	cursor: url(../media/hand.cur),default;
+}
+.card:hover, .cartahs:hover{
+	cursor: url(../media/eye.ani),url(../media/hand.cur),default;
+}
+.card:active, .cartahs:active, button:active, #nextCard:active{
+	cursor: url(../media/handclick.cur),url(../media/hand.cur),default;
 }
 .card:hover, .cartahs:hover{
 	-webkit-transform: scale(1.1);

@@ -69,17 +69,18 @@ function showCard(cardNo, string, string2){
   // $("#card-faction").text(obj.faction);
   // $("#player-class").text(obj.playerClass);
   $("#"+string).find('.back img').on("error",function() {
-    $( this ).attr( "src", repuesto[nrepuesto]);
+    $(this).attr( "src", repuesto[nrepuesto]);
+    $("#"+string2).find('.back img').attr( "src", repuesto[nrepuesto]);
     $("#"+string).attr('data-cost',"0");
-    $("#"+string).attr('data-rarity',"Common");
     $("#"+string2).attr('data-cost',"0");
+    $("#"+string).attr('data-rarity',"Common");
     $("#"+string2).attr('data-rarity',"Common");
     if(nrepuesto==2){
         $("#"+string).attr('data-rarity',"Epic");
         $("#"+string2).attr('data-rarity',"Epic");
     }
     nrepuesto++;
-    if(nrepuesto>4){
+    if(nrepuesto>=4){
       nrepuesto = 0;
     }
   });
