@@ -21,7 +21,7 @@ html, body {
 }
 #container{
 	position:absolute;
-	margin-top:-0.5%;
+	z-index:1;
 	padding:0;
 	margin-top: -3,5%;
 	width: 120em;
@@ -30,12 +30,23 @@ html, body {
 	background-size:cover;
 }
 #nextCard{
-	position:relative;
-	margin-top: 1%;
+	position:absolute;
+	margin-top: 24.7%;
+	margin-left:27.5%;
+	background-color:#edc604;
+	color:#000;
+	border-radius:0.4em;
+	width:7em;
+}
+#nextCard:disabled{
+	color:#969696;
 }
 .pruebaimg{
 	width:10.625em;
 	height:16.875em;
+}
+.cartahs,#nextCard{
+	z-index:2;
 }
 .cartahs,.front,.back{
 	width: 8.750em;
@@ -126,6 +137,31 @@ html, body {
     -webkit-animation: bright 1s infinite;
     -moz-animation: bright 1s infinite;
     animation: bright 1s infinite;
+    -webkit-animation-direction: alternate-reverse;
+    -moz-animation-direction: alternate-reverse;
+    animation-direction: alternate-reverse;
+}
+#container:after {
+	content: '';
+    background-image: url('../media/board2.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+		position: absolute;
+		z-index:0;
+    /*width: 68px;
+    height: 68px;*/
+		width: 100%;
+    height: 100%;
+    /*box-shadow: 0 0 2px rgb(255, 255, 255) inset, 0 0 5px rgb(255, 235, 0), 0 0 10px rgb(255, 129, 0);*/
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    opacity: 0;
+    -webkit-animation: bright 2s infinite;
+    -moz-animation: bright 2s infinite;
+    animation: bright 2s infinite;
     -webkit-animation-direction: alternate-reverse;
     -moz-animation-direction: alternate-reverse;
     animation-direction: alternate-reverse;
