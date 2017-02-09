@@ -21,7 +21,7 @@ function showCardRandom(){
   var string = '';
   var cardNum = 5;
   var listaCartas = [];
-
+  var fila2 = disorderDivs();
   for(var i=1;i<cardNum+1;i++){
   var cardNo = Math.floor(Math.random() * cards.length); // Select a random card number
   // var obj = cards[cardNo];
@@ -41,7 +41,7 @@ function showCardRandom(){
     }
      listaCartas.push(cardNo);
    }
-  showCard(cardNo, i);
+  showCard(cardNo, fila2[i-1], fila2[i+4]);
 }
 }
 function ImprimirObjeto(o) {
@@ -54,9 +54,8 @@ function ImprimirObjeto(o) {
 
 var repuesto = ["media/REP_1.png","media/REP_2.png","media/REP_3.png","media/REP_4.png","media/REP_5.png"]; //Si alguna imagen falla, tener hasta 5 repuestos alojados en el servidor
 var nrepuesto = 0; //Numero auxiliar de carta de repuesto
-function showCard(cardNo, string){
+function showCard(cardNo, string, string2){
   var obj = cards[cardNo];
-  var string2 = string+5;
   $("#"+string).find('.back img').attr('src', obj.img);
   $("#"+string).attr('data-id',obj.cardId);
   $("#"+string).attr('data-rarity',obj.rarity);
@@ -100,21 +99,16 @@ function flattenCards(data){
 }
 function disorderDivs(){
   var array = [1,2,3,4,5,6,7,8,9,10];
-  //alert(array);
-  for(var i=0; i<5;i++){
-    var random1 = Math.floor(Math.random() * 10)+1;
-    while($.inArray(random1,array) == -1){
-       random1 = Math.floor(Math.random() * 10)+1;
+  var array2 = [];
+  for(var i=0; i<10;i++){
+    var random = Math.floor(Math.random() * 10)+1;
+    while($.inArray(random,array) == -1){
+       random = Math.floor(Math.random() * 10)+1;
     }
-    array.splice(array.indexOf(random1),1);
-    var random2 = Math.floor(Math.random() * 10)+1;
-    while($.inArray(random2,array) == -1){
-      random2 = Math.floor(Math.random() * 10)+1;
-    }
-    array.splice(array.indexOf(random2),1);
-    //alert("n1: " + random1 + " n2: " + random2 + " array: " + array);
-    changeDivposition(random1,random2);
+    array.splice(array.indexOf(random),1);
+    array2.push(random);
   }
+  return array2;
 }
 function changeDivposition(div1,div2){
   //alert(div1 + " " + div2);

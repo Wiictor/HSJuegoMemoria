@@ -86,7 +86,6 @@ $(".cartahs").on('click',function () {
   else{
     $("#nextCard").attr("disabled", true);
   }
-  // $(this).off(".flip");
 });
 
 $('#nextCard').on('click',function(){

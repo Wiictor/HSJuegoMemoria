@@ -117,10 +117,63 @@
 	<!-- <script type="text/javascript" src="js/card.min.js"></script> -->
 	<!-- <script type="text/javascript" src="js/core.js"></script> -->
 	<script>
-			// $("#2").swap({
-			// 	target: "8",
-			// 	speed: 0
-			// });
+function swapCartas(){
+	var random = Math.floor(Math.random()*(3-1+1)+1);
+	if(random==3){
+		$("#1").swap({
+			target: "6",
+			speed: 1
+		});
+		setTimeout(function(){
+			$("#3").swap({
+			target: "8",
+			speed: 1
+			});
+		},500);
+		setTimeout(function(){
+			$("#5").swap({
+			target: "10",
+			speed: 1
+			});
+		},900);
+	}
+	else{
+		if(random==2){
+			$("#2").swap({
+				target: "7",
+				speed: 1
+			});
+			setTimeout(function(){
+				$("#4").swap({
+				target: "9",
+				speed: 1
+				});
+			},800);
+	}
+	else{
+			$("#1").swap({
+				target: "6",
+				speed: 1
+			});
+			setTimeout(function(){
+				$("#2").swap({
+				target: "7",
+				speed: 1
+				});
+			},500);
+			setTimeout(function(){
+				$("#4").swap({
+				target: "9",
+				speed: 1
+				});
+			},900);
+	}
+	}
+}
+// swapCartas();
+		$("#nextCard").on("click",function(){
+			// swapCartas();
+});
 	</script>
 </body>
 </html>
