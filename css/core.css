@@ -47,19 +47,21 @@ html, body {
 	color:#969696;
 }
 .pruebaimg{
-	/*width:10.625em;*/
-	width: 170px;
-	/*height:16.875em;*/
-	height:270px;
+	width:10.625em;
+	/*width: 170px;*/
+	height:16.875em;
+	/*height:270px;*/
 }
 .cartahs,#nextCard{
 	z-index:2;
 }
 .cartahs,.front,.back{
-	/*width: 8.750em;*/
-	width: 140px;
-	/*height: 13.625em;*/
-	height:218px;
+	width: 8.750em;
+	/*width: 140px;*/
+	/*width:8%;*/
+	height: 13.625em;
+	/*height:218px;*/
+	/*height:20%;*/
 }
 .glowCommon{
 -webkit-animation: neonCommon 1.5s ease-in-out infinite alternate;
