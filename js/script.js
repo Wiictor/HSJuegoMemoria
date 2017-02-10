@@ -122,8 +122,8 @@ getCardData(); // Start loading card data ASAP - subsequent calls will return th
 
 var height = window.screen.availHeight;
 var width = window.screen.availWidth;
-$(document).css("width",width);
-$(document).css("overflow-y","auto");
+// $(document).css("width",width);
+// $(document).css("overflow-y","auto");
 // $("body").css("width",width);
 $(document).ready(function() {
   $("#container").hide();
