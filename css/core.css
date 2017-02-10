@@ -38,22 +38,28 @@ html, body {
 	margin-left:27.5%;
 	background-color:#edc604;
 	color:#000;
-	border-radius:0.4em;
-	width:7em;
+	/*border-radius:0.4em;*/
+	border-radius:6px;
+	/*width:7em;*/
+	width:112px;
 }
 #nextCard:disabled{
 	color:#969696;
 }
 .pruebaimg{
-	width:10.625em;
-	height:16.875em;
+	/*width:10.625em;*/
+	width: 170px;
+	/*height:16.875em;*/
+	height:270px;
 }
 .cartahs,#nextCard{
 	z-index:2;
 }
 .cartahs,.front,.back{
-	width: 8.750em;
-	height: 13.625em;
+	/*width: 8.750em;*/
+	width: 140px;
+	/*height: 13.625em;*/
+	height:218px;
 }
 .glowCommon{
 -webkit-animation: neonCommon 1.5s ease-in-out infinite alternate;
