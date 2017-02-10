@@ -120,8 +120,15 @@ function changeDivposition(div1,div2){
 }
 getCardData(); // Start loading card data ASAP - subsequent calls will return the same promise anyway
 
+var height = window.screen.availHeight;
+var width = window.screen.availWidth;
+$(document).css("width",width);
+$(document).css("overflow-y","auto");
+// $("body").css("width",width);
 $(document).ready(function() {
   $("#container").hide();
+  $("#container").css("width",width);
+  $("#container").css("height",height);
   $("#nextCard").attr('disabled',true);
   getCardData()
     .done(function(data){

@@ -10,7 +10,8 @@
 html, body {
 	margin: 0;
 	padding: 0;
-	overflow: hidden;
+	overflow-x: hidden;
+	overflow-y: scroll;
 	height: 100%;
 	text-align: center;
 	background-color: #0F1119;
@@ -24,10 +25,12 @@ html, body {
 	z-index:1;
 	padding:0;
 	margin-top: -3,5%;
-	width: 120em;
-	height: 60em;
+	/*padding-bottom: 56.25%;*/
+	/*padding-bottom: 56.25%;*/
+	/*width: 120em;
+	height: 60em;*/
 	background: url('../media/board.png') no-repeat;
-	background-size:cover;
+	background-size:contain;
 }
 #nextCard{
 	position:absolute;
@@ -145,7 +148,7 @@ html, body {
 	content: '';
     background-image: url('../media/board2.png');
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-size: contain;
 		position: absolute;
 		z-index:0;
     /*width: 68px;
