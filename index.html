@@ -13,12 +13,16 @@
 <body>
 	<div id="rare"></div>
 	<div id="container">
-		<div class="musica" style="position:fixed; z-index:100; margin-top:2%; margin-left:1%;" >
+		<div id="blockcards"></div>
+		<div class="musica" style="position:absolute; z-index:100; margin-top:2%; margin-left:1%;" >
 			<i class="mdi mdi-volume-high mdi-48px mdi-light" id="buttonmusic"></i>
 			<audio id="boardmusic" loop autoplay>
 	  <source src="sounds/boardmusic.ogg" type="audio/ogg">
 	Your browser does not support the audio element.
 		</audio>
+		</div>
+		<div id="timer" style="">
+			<p style="margin-top:32%; font-size:2em;">00:00:28</p>
 		</div>
 		<button id="nextCard" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" >Loading Data...</button>
 	<div class="cardcontainer1">

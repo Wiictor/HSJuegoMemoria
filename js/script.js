@@ -122,16 +122,39 @@ getCardData(); // Start loading card data ASAP - subsequent calls will return th
 
 var height = window.screen.availHeight;
 var width = window.screen.availWidth;
+var widthcarta = (width*7)/100;
+var heightcarta = (height*20)/100;
+$(".cartahs").css("width",widthcarta);
+$(".front").css("width",widthcarta);
+$(".back").css("width",widthcarta);
+// $(".cartahs").css("height",heightcarta);
+// $(".front").css("height",heightcarta);
+// $(".back").css("height",heightcarta);
 // $(document).css("width",width);
 // $(document).css("overflow-y","auto");
 // $("body").css("width",width);
+
 $(document).ready(function() {
   $("#container").hide();
   $("#container").css("width",width);
   $("#container").css("height",height);
   $("#nextCard").attr('disabled',true);
+  $( window ).resize(function() {
+    width = window.screen.width;
+    height = window.screen.height;
+    widthcarta = (width*7)/100;
+    heightcarta = (height*20)/100;
+    $("#container").css("width",width);
+    $("#container").css("height",height);
+    $("#nextCard").attr('disabled',true);
+    $(".cartahs").css("width",widthcarta);
+    $(".front").css("width",widthcarta);
+    $(".back").css("width",widthcarta);
+  });
   getCardData()
     .done(function(data){
+        // $("#timer").attr('background-image','url("media/timer.gif")')
+        $("#blockcards").hide();
         $("#nextCard").text("Next");
         $(".cartahs").flip();
        cards = flattenCards(data);

@@ -101,6 +101,7 @@ $(".cartahs").on('click',function () {
         }
       }
   if(ncartaslevantadas==2){
+    $("#blockcards").show();
     if(cartaslevantadas[0].attr('data-id') != cartaslevantadas[1].attr('data-id')){
       var id1 = cartaslevantadas[0].attr('id').toString();
       var id2 = cartaslevantadas[1].attr('id').toString();
@@ -113,6 +114,7 @@ $(".cartahs").on('click',function () {
       cartaslevantadas[0].attr('data-lev','S');
       cartaslevantadas[1].attr('data-lev','S');
     }
+    setTimeout(function(){$("#blockcards").hide();},600);
     ncartaslevantadas = 0;
     cartaslevantadas = [];
   }
