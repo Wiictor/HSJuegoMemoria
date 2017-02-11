@@ -133,6 +133,7 @@ $(".back").css("width",widthcarta);
 // $(document).css("width",width);
 // $(document).css("overflow-y","auto");
 // $("body").css("width",width);
+var modojuego = 0;
 var tiempo_corriendo = null;
 var puntbase = [1000000,3000000,6000000];
 var porcenjusta = [0,0.10,0.25];
@@ -310,7 +311,7 @@ $(".cartahs").on('click',function () {
   if(allFlipped() == true){
     clearInterval(tiempo_corriendo);
     segundospunt = (tiempo.hora*3600)+(tiempo.minuto*60)+(tiempo.segundo);
-    puntuacion = Math.round(puntbasefacil/(segundospunt/60));
+    puntuacion = Math.round((puntbase[modojuego]/(segundospunt/60))*(1+(porcenjusta[modojuego]*justasganadas)));
     var puntuacionfix = formatNum(puntuacion,".",",");
     var audiowin = document.createElement('audio');
     audiowin.src = "sounds/victory.ogg";
