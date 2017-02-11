@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+  function formatNum(num, separator, fraction) {
+  var str = num.toLocaleString('es-ES');
+  str = str.replace(/\./, fraction);
+  str = str.replace(/,/g, separator);
+  return str;
+}
+var number = 3000000;
+var number2 = formatNum(number,".",",");
+alert(number + " " + number2);
+  </script>
+</body>
+</html>

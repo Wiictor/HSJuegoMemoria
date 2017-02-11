@@ -1,3 +1,7 @@
+@font-face {
+	font-family: "LHF";
+	src: url(../LHF.ttf) format("truetype");
+}
 * {
 	webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -5,6 +9,7 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+		font-family: 'LHF', 'Helvetica', sans-serif;
 }
 
 html, body {
@@ -33,17 +38,17 @@ html, body {
 	background: url('../media/board.png') no-repeat;
 	background-size:contain;
 }
-#nextCard{
+/*#nextCard{
 	position:absolute;
 	margin-top: 22.8%;
 	margin-left:22.8%;
 	background-color:#edc604;
 	color:#000;
-	/*border-radius:0.4em;*/
+	border-radius:0.4em;
 	border-radius:6px;
-	/*width:7em;*/
+	width:7em;
 	width:6%;
-}
+}*/
 #timer{
 	position:absolute;
 	z-index:100;
@@ -56,6 +61,11 @@ html, body {
 	background: url('../media/timer.gif') no-repeat;
 	background-size:cover;
 }
+#tiempo{
+	position:relative;
+	top:60%;
+	font-size:120%;
+}
 #blockcards{
 	position:absolute;
 	top:0;
@@ -65,26 +75,18 @@ html, body {
 	background-color: rgba(255, 255, 255, 0);
 	z-index:900;
 }
-#nextCard:disabled{
+/*#nextCard:disabled{
 	color:#969696;
-}
+}*/
 .pruebaimg{
 	/*width:10.625em;*/
 	/*width: 130px;*/
 	width:120%;
 	/*height:16.875em;*/
-	height:120%;
+	/*height:120%;*/
 }
-.cartahs,#nextCard{
+.cartahs{
 	z-index:2;
-}
-.cartahs,.front,.back{
-	/*width: 8.750em;*/
-	/*width: 100px;*/
-	/*width:7%;*/
-	/*height: 13.625em;*/
-	/*height:158px;*/
-	/*height:20%;*/
 }
 .glowCommon{
 -webkit-animation: neonCommon 1.5s ease-in-out infinite alternate;
@@ -200,13 +202,13 @@ html, body {
     -moz-animation-direction: alternate-reverse;
     animation-direction: alternate-reverse;
 }
-button:hover, #nextCard:hover {
+button:hover {
 	cursor: url(../media/hand.cur),default;
 }
 .card:hover, .cartahs:hover{
 	cursor: url(../media/eye.ani),url(../media/hand.cur),default;
 }
-.card:active, .cartahs:active, button:active, #nextCard:active{
+.card:active, .cartahs:active, button:active{
 	cursor: url(../media/handclick.cur),url(../media/hand.cur),default;
 }
 .card:hover, .cartahs:hover{
@@ -218,14 +220,14 @@ transition: all 0.3s;
 -webkit-transition: all 0.3s;
 z-index: 100;
 }
-#nextCard:hover{
+/*#nextCard:hover{
 	-webkit-transform: scale(1.2);
 -moz-transform: scale(1.2);
 -o-transform: scale(1.2);
 transform: scale(1.2);
 transition: all 0.3s;
 -webkit-transition: all 0.3s;
-}
+}*/
 
 
 #star {

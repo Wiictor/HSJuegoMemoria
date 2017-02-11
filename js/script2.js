@@ -1,3 +1,12 @@
+var tiempo_corriendo = null;
+var puntbasefacil = 1000000;
+var segundospunt = 0;
+var puntuacion = 0;
+var tiempo = {
+    hora: 0,
+    minuto: 0,
+    segundo: 0
+};
 function allFlipped(){
   var sol = false;
   var cont = 0;
@@ -17,7 +26,27 @@ function resetCards(){
     $("#"+l).attr("data-lev","N");
   }
 }
-$(document).ready(function(){
+  $(document).ready(function(){
+    tiempo_corriendo = setInterval(function(){
+        // Segundos
+        tiempo.segundo++;
+        if(tiempo.segundo >= 60)
+        {
+            tiempo.segundo = 0;
+            tiempo.minuto++;
+        }
+
+        // Minutos
+        if(tiempo.minuto >= 60)
+        {
+            tiempo.minuto = 0;
+            tiempo.hora++;
+        }
+
+        $("#horas").text(tiempo.hora < 10 ? '0' + tiempo.hora : tiempo.hora);
+        $("#minutos").text(tiempo.minuto < 10 ? '0' + tiempo.minuto : tiempo.minuto);
+        $("#segundos").text(tiempo.segundo < 10 ? '0' + tiempo.segundo : tiempo.segundo);
+    }, 1000);
   resetCards();
   var audio = document.createElement('audio');
   var audio2 = document.createElement('audio');
@@ -27,41 +56,15 @@ $(".cartahs").mouseenter(function () {
   audio3.src = "sounds/card_mouse_over.ogg";
   audio3.play();
   var flip = $(this).data("flip-model");
-  if(flip.isFlipped == false){ // AÑADE BRILLO A LAS CARTAS SEGÚN SU RAREZA, LO DESACTIVAREMOS PORQUE NO TIENE MUCHO SENTIDO EN EL JUEGO, PERO SE PODRÍA ACTIVAR
-  //   if($(this).attr('data-rarity') == "Common" || $(this).attr('data-rarity') == "Free"){
-  //   $(this).addClass("glowCommon");
-  // }
-  //   if($(this).attr('data-rarity') == "Rare"){
-    // $(this).addClass("glowRare");
-    // audio.src = 'sounds/card_aura_rare_lp.ogg';
-    // audio.loop = true;
-  // }
-  //   if($(this).attr('data-rarity') == "Epic"){
-  //   $(this).addClass("glowEpic");
-  //   audio.src = 'sounds/card_aura_epic_lp.ogg';
-  //   audio.loop = true;
-  // }
-    // if($(this).attr('data-rarity') == "Legendary"){
-    // $(this).addClass("glowLegendary");
-    //   audio.src = 'sounds/card_aura_legendary_lp.ogg';
-    //   audio.loop = true;
-  // }
+  if(flip.isFlipped == false){
   audio.play();
   }
   else{
-    // $(this).removeClass("glowCommon");
-    // $(this).removeClass("glowRare");
-    // $(this).removeClass("glowEpic");
-    // $(this).removeClass("glowLegendary");
     audio.src = '';
     audio.loop = false;
   }
 });
 $(".cartahs").mouseout(function () {
-  // $(this).removeClass("glowCommon");
-  // $(this).removeClass("glowRare");
-  // $(this).removeClass("glowEpic");
-  // $(this).removeClass("glowLegendary");
   audio.src = '';
   audio3.src = "sounds/card_mouse_away.ogg";
   audio3.play();
@@ -121,6 +124,13 @@ $(".cartahs").on('click',function () {
   }
   if(allFlipped() == true){
     $("#nextCard").attr("disabled", false);
+    clearInterval(tiempo_corriendo);
+    segundospunt = (tiempo.hora*3600)+(tiempo.minuto*60)+(tiempo.segundo);
+    puntuacion = Math.round(puntbasefacil/(segundospunt/60));
+    alert("FELICIDADES, HAS COMPLETADO EL MAPA EN " + segundospunt + " SEGUNDOS.\n LO QUE HACE UN TOTAL DE: "+puntuacion+" PUNTOS!!");
+    tiempo.hora = 0;
+    tiempo.minuto = 0;
+    tiempo.segundo = 0;
   }
   else{
     $("#nextCard").attr("disabled", true);
@@ -129,6 +139,26 @@ $(".cartahs").on('click',function () {
 
 $('#nextCard').on('click',function(){
     resetCards();
+    tiempo_corriendo = setInterval(function(){
+        // Segundos
+        tiempo.segundo++;
+        if(tiempo.segundo >= 60)
+        {
+            tiempo.segundo = 0;
+            tiempo.minuto++;
+        }
+
+        // Minutos
+        if(tiempo.minuto >= 60)
+        {
+            tiempo.minuto = 0;
+            tiempo.hora++;
+        }
+
+        $("#horas").text(tiempo.hora < 10 ? '0' + tiempo.hora : tiempo.hora);
+        $("#minutos").text(tiempo.minuto < 10 ? '0' + tiempo.minuto : tiempo.minuto);
+        $("#segundos").text(tiempo.segundo < 10 ? '0' + tiempo.segundo : tiempo.segundo);
+    }, 1000);
     $(this).flip(true);
   });
 
