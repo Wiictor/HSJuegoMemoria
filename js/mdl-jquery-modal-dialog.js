@@ -82,7 +82,7 @@ function showDialog(options) {
                 title: 'OK',
                 onClick: null
             }, options.positive);
-            var posButton = $('<button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" id="' + options.positive.id + '">' + options.positive.title + '</button>');
+            var posButton = $('<button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" style="background:url(\'media/botoncontinuar.png\');background-size:cover;background-repeat:no-repeat;" id="' + options.positive.id + '">' + options.positive.title + '</button>');
             posButton.click(function (e) {
                 e.preventDefault();
                 if (options.positive.onClick == null || !options.positive.onClick(e))

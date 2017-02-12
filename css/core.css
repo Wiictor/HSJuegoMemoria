@@ -66,6 +66,28 @@ html, body {
 	top:60%;
 	font-size:120%;
 }
+#ajustes{
+	position:relative;
+	z-index:100;
+	margin-top:1%;
+	margin-right:8%;
+	float:right;
+	color:#fff;
+	font-weight:bolder;
+	width: 5%;
+	height:4.2%;
+	border-radius:24%;
+	background: url('../media/botonajustes.png') no-repeat;
+	background-size:cover;
+}
+#ajustes:active{
+	background: url('../media/botonajustes2.png') no-repeat;
+	background-size:cover;
+	box-shadow: 0 0 2px rgb(255, 255, 255) inset, 0 0 20px rgb(255, 255, 255);
+}
+#ajustes:hover{
+	box-shadow: 0 0 2px rgb(255, 255, 255) inset, 0 0 20px rgb(255, 255, 255);
+}
 #blockcards{
 	position:absolute;
 	top:0;

@@ -14,7 +14,7 @@
     transition: opacity 400ms ease-in;
 }
 .dialog-container{
-  margin-bottom:-5%;
+  margin-bottom:-8%;
 }
 #orrsDiag_content{
   background-color:rgba(255, 255, 255, 0);
@@ -26,12 +26,15 @@
     position: relative;
     width: 90%;
     max-width: 500px;
-    min-height: 25px;
+    /*min-height: 25px;*/
     margin: 10% auto;
     z-index: 99999;
     padding: 16px 16px 0;
 }
-
+#positive{
+  /*margin-top:-7%;*/
+  color: rgba(14, 28, 108, 0);
+}
 .dialog-button-bar {
     text-align: center;
     margin-top: 8px;

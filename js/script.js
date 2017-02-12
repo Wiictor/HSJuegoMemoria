@@ -133,13 +133,11 @@ $(".back").css("width",widthcarta);
 // $(document).css("width",width);
 // $(document).css("overflow-y","auto");
 // $("body").css("width",width);
+var gameactive = true;
 var modojuego = 0;
 var tiempo_corriendo = null;
 var puntbase = [1000000,3000000,6000000];
 var porcenjusta = [0,0.10,0.25];
-var puntbasefacil = 1000000;
-var puntbasenormal = 3000000;
-var puntbasedificil = 6000000;
 var segundospunt = 0;
 var puntuacion = 0;
 var vida = 0;
@@ -190,6 +188,9 @@ $(document).ready(function() {
   $("#container").hide();
   $("#container").css("width",width);
   $("#container").css("height",height);
+  $("#orrsDiag").css("width",width);
+  $("#orrsDiag").css("height",height);
+  $("#orrsDiag").css("overflow","hidden");
   $("#nextCard").attr('disabled',true);
   $( window ).resize(function() {
     width = window.screen.width;
@@ -198,6 +199,8 @@ $(document).ready(function() {
     heightcarta = (height*20)/100;
     $("#container").css("width",width);
     $("#container").css("height",height);
+    $("#orrsDiag").css("width",width);
+    $("#orrsDiag").css("height",height);
     $("#nextCard").attr('disabled',true);
     $(".cartahs").css("width",widthcarta);
     $(".front").css("width",widthcarta);
@@ -318,7 +321,7 @@ $(".cartahs").on('click',function () {
     audiowin.play();
     showDialog({
         title: 'FELICIDADES!',
-        text: 'Has completado el mapa en '+segundospunt+' segundos.<br/> Lo que hace un total de: <bolder>'+ puntuacionfix +'</bolder> puntos!',
+        text: 'Has completado el mapa en '+segundospunt+' segundos<br/> Lo que hace un total de: <bolder>'+ puntuacionfix +'</bolder> puntos!',
         positive: {
             title: 'CONTINUAR',
               onClick: function (e) {
@@ -358,10 +361,82 @@ $(".cartahs").on('click',function () {
   }
 });
   var botonaudio = document.createElement('audio');
-  // $("#nextCard").mouseenter(function() {
-  //   botonaudio.src = "sounds/Hub_Mouseover.ogg";
-  //   botonaudio.play();
-  // });
+  $("#ajustes").mouseenter(function() {
+    botonaudio.src = "sounds/Hub_Mouseover.ogg";
+    botonaudio.play();
+  });
+  $("#ajustes").on('click',function(){
+    clearInterval(tiempo_corriendo);
+    showDialog({
+        title: 'MENU',
+        text: 'El juego se encuentra en pausa!',
+        positive: {
+            title: 'CONTINUAR',
+              onClick: function (e) {
+              botonaudio.src = "sounds/Hub_Click.ogg";
+              botonaudio.play();
+              tiempo_corriendo = setInterval(function(){
+                  // Segundos
+                  tiempo.segundo++;
+                  if(tiempo.segundo >= 60)
+                  {
+                      tiempo.segundo = 0;
+                      tiempo.minuto++;
+                  }
+
+                  // Minutos
+                  if(tiempo.minuto >= 60)
+                  {
+                      tiempo.minuto = 0;
+                      tiempo.hora++;
+                  }
+
+                  $("#horas").text(tiempo.hora < 10 ? '0' + tiempo.hora : tiempo.hora);
+                  $("#minutos").text(tiempo.minuto < 10 ? '0' + tiempo.minuto : tiempo.minuto);
+                  $("#segundos").text(tiempo.segundo < 10 ? '0' + tiempo.segundo : tiempo.segundo);
+              }, 1000);
+            }
+        },
+        cancelable: false
+    });
+  });
+  $(window).blur(function(){
+    if(gameactive==true){
+    clearInterval(tiempo_corriendo);
+    showDialog({
+        title: 'MENU',
+        text: 'El juego se encuentra en pausa!',
+        positive: {
+            title: 'CONTINUAR',
+              onClick: function (e) {
+              botonaudio.src = "sounds/Hub_Click.ogg";
+              botonaudio.play();
+              tiempo_corriendo = setInterval(function(){
+                  // Segundos
+                  tiempo.segundo++;
+                  if(tiempo.segundo >= 60)
+                  {
+                      tiempo.segundo = 0;
+                      tiempo.minuto++;
+                  }
+
+                  // Minutos
+                  if(tiempo.minuto >= 60)
+                  {
+                      tiempo.minuto = 0;
+                      tiempo.hora++;
+                  }
+
+                  $("#horas").text(tiempo.hora < 10 ? '0' + tiempo.hora : tiempo.hora);
+                  $("#minutos").text(tiempo.minuto < 10 ? '0' + tiempo.minuto : tiempo.minuto);
+                  $("#segundos").text(tiempo.segundo < 10 ? '0' + tiempo.segundo : tiempo.segundo);
+              }, 1000);
+            }
+        },
+        cancelable: false
+    });
+  }
+});
   //  $('#nextCard').on('click',function(){
   //    //showCardRandom();
   //    botonaudio.src = "sounds/Hub_Click.ogg";
