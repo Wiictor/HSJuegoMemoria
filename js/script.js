@@ -133,7 +133,7 @@ $(".back").css("width",widthcarta);
 // $(document).css("width",width);
 // $(document).css("overflow-y","auto");
 // $("body").css("width",width);
-var gameactive = true;
+var gameactive = false;
 var modojuego = 0;
 var tiempo_corriendo = null;
 var puntbase = [1000000,3000000,6000000];
@@ -208,12 +208,14 @@ $(document).ready(function() {
   });
   getCardData()
     .done(function(data){
+      gameactive = true;
         // $("#timer").attr('background-image','url("media/timer.gif")')
         $("#blockcards").hide();
         $(".cartahs").flip();
        cards = flattenCards(data);
        showCardRandom();
        disorderDivs();
+       if(gameactive == true){
        tiempo_corriendo = setInterval(function(){
            // Segundos
            tiempo.segundo++;
@@ -234,6 +236,7 @@ $(document).ready(function() {
            $("#minutos").text(tiempo.minuto < 10 ? '0' + tiempo.minuto : tiempo.minuto);
            $("#segundos").text(tiempo.segundo < 10 ? '0' + tiempo.segundo : tiempo.segundo);
        }, 1000);
+      }
        $("#container").slideDown();
     });
   resetCards();
@@ -313,6 +316,7 @@ $(".cartahs").on('click',function () {
   }
   if(allFlipped() == true){
     clearInterval(tiempo_corriendo);
+    gameactive = false;
     segundospunt = (tiempo.hora*3600)+(tiempo.minuto*60)+(tiempo.segundo);
     puntuacion = Math.round((puntbase[modojuego]/(segundospunt/60))*(1+(porcenjusta[modojuego]*justasganadas)));
     var puntuacionfix = formatNum(puntuacion,".",",");
@@ -330,6 +334,7 @@ $(".cartahs").on('click',function () {
               $(".cartahs").flip(false);
               showCardRandom();
               resetCards();
+              gameactive = true;
               tiempo_corriendo = setInterval(function(){
                   // Segundos
                   tiempo.segundo++;
@@ -366,6 +371,7 @@ $(".cartahs").on('click',function () {
     botonaudio.play();
   });
   $("#ajustes").on('click',function(){
+    gameactive = false;
     clearInterval(tiempo_corriendo);
     showDialog({
         title: 'MENU',
@@ -373,6 +379,7 @@ $(".cartahs").on('click',function () {
         positive: {
             title: 'CONTINUAR',
               onClick: function (e) {
+              gameactive = true;
               botonaudio.src = "sounds/Hub_Click.ogg";
               botonaudio.play();
               tiempo_corriendo = setInterval(function(){
