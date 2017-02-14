@@ -353,9 +353,9 @@ z-index: 100;
 	}
 	@keyframes neonLegendary {
 		from {
-			box-shadow: 0 0 20.5px #fff, 0 0 10px #fff, 0 0 200px #FFD700;
+			box-shadow: 0 0 10px #f74b4b, 0 0 150px rgb(255, 0, 0);
 		}
 		to {
-			box-shadow: 0 0 20.5px #fff, 0 0 5px #fff, 0 0 100px #FFD700;
+			box-shadow: 0 0 10px #f74b4b, 0 0 75px rgb(255, 14, 14);
 		}
 	}
