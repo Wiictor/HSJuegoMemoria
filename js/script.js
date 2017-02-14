@@ -283,6 +283,7 @@ var widthcarta = (width*7)/100;
 $(".cartahs").css("width",widthcarta);
 $(".front").css("width",widthcarta);
 $(".back").css("width",widthcarta);
+$("div.outer").css("width",widthcarta);
 var puntbase = [1000000,3000000,6000000];
 var vidastat = [9999999999,30,30];
 var porcenjusta = [0.05,0.10,0.25];
@@ -377,6 +378,7 @@ $(document).ready(function() {
     $(".cartahs").css("width",widthcarta);
     $(".front").css("width",widthcarta);
     $(".back").css("width",widthcarta);
+    $("div.outer").css("width",widthcarta);
   });
   getCardData()
     .done(function(data){

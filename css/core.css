@@ -249,8 +249,8 @@ z-index: 100;
 
 /* ------------- CSS DE LAS CARTAS DE LA JUSTA ------------*/
 .cardcontainer3{
-	margin-left: 70%;
-	margin-top: -17.5%;
+	margin-left: 76%;
+	margin-top: -13.5%;
 	/*width:100%;*/
 	/*margin-top:-6%;
 	margin-left:6%;
@@ -276,9 +276,9 @@ z-index: 100;
 	-ms-transform: scale(1);
 	transform: scale(1);
 }
-div.outer { position: relative; width:134.391px; height:220px; top:100px; left: 150px;}
+div.outer { position: relative;}
 	.inferior{
-		margin-top:7em;
+		margin-top:11em;
 	}
 . { left:0;top:0; right:0,bottom:0; position: absolute }
 div.outer img{
