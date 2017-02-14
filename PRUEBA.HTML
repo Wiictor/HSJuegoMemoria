@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
   <!-- <link rel="stylesheet" type="text/css" href="css/core.css"> -->
   <style>
   /*.containerai{
@@ -42,7 +45,7 @@
     }
     #a9,#b9{
       z-index:1;
-      margin-top:-206px;
+      margin-top:-200px;
     }
     #a10,#b10{
       z-index:1;
@@ -53,7 +56,7 @@
     }
     .cartas{
       z-index:1;
-      margin-top:-206px;
+      margin-top:-202px;
     }
     .cartahsactive{
     	-webkit-transform: scale(1.4);
@@ -74,10 +77,10 @@
     }
     @keyframes neonLegendary {
       from {
-        box-shadow: 0 0 20.5px #fff, 0 0 10px #fff, 0 0 75px #FFD700;
+        box-shadow: 0 0 20.5px #fff, 0 0 10px #fff, 0 0 100px #FFD700;
       }
       to {
-        box-shadow: 0 0 20.5px #fff, 0 0 5px #fff, 0 0 50px #FFD700;
+        box-shadow: 0 0 20.5px #fff, 0 0 5px #fff, 0 0 75px #FFD700;
       }
     }
   </style>
@@ -99,6 +102,10 @@
   <div class="outer" id="contenedora">
 </div>
 <div class="outer inferior" id="contenedorb">
+</div>
+<div class="mdl-tooltip" data-mdl-for="contenedora" id="tooltipa">
+</div>
+<div class="mdl-tooltip" data-mdl-for="contenedorb" id="tooltipb">
 </div>
 </div>
   <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
@@ -199,6 +206,16 @@
     $("#contenedorb").html(contenedorb);
     $(".cartahs").flip({trigger: 'manual'});
   }
+  function tooltipCartas(cartasr){
+    if(cartasr!=0){
+    $("#tooltipa").text("Hay "+cartasr+" cartas en el mazo del tabernero.");
+    $("#tooltipb").text("Hay "+cartasr+" cartas en tu mazo.");
+    }
+    else{
+      $("#tooltipa").text("No quedan cartas.");
+      $("#tooltipb").text("No quedan cartas.");
+    }
+  }
   getCardData(); // Start loading card data ASAP - subsequent calls will return the same promise anyway
 $(document).ready(function() {
     var numerocartas = 20;
@@ -215,6 +232,7 @@ $(document).ready(function() {
     $("#vida").text(vida);
     $("#fatiga").text(fatiga);
     $("#muerto").text(muerto);
+    tooltipCartas(numerocartas-(haycartas-1));
     generaCartas(numerocartas);
 
     getCardData()
@@ -242,6 +260,7 @@ $(document).ready(function() {
        $("#vida").text(vida);
        $("#fatiga").text(fatiga);
        $("#muerto").text(muerto);
+       tooltipCartas(numerocartas-(haycartas-1));
        generaCartas(numerocartas);
        showCardRandom(""+haycartas);
     });
@@ -265,6 +284,7 @@ $(document).ready(function() {
        $("#vida").text(vida);
        $("#fatiga").text(fatiga);
        $("#muerto").text(muerto);
+       tooltipCartas(numerocartas-(haycartas-1));
        generaCartas(numerocartas);
        getCardData()
          .done(function(data){
@@ -291,6 +311,7 @@ $(document).ready(function() {
       $("#vida").text(vida);
       $("#fatiga").text(fatiga);
       $("#muerto").text(muerto);
+      tooltipCartas(numerocartas-(haycartas-1));
       generaCartas(numerocartas);
       showCardRandom(""+haycartas);
     });
@@ -303,14 +324,15 @@ $(document).ready(function() {
       $("#b"+haycartas).flip('true');
       $("#a"+haycartas).addClass('cartahsactive');
       $("#b"+haycartas).addClass('cartahsactive');
+      var numero = haycartas+1;
       if(costea>costeb){
-          $("#a"+haycartas).addClass('glowLegendary');
+          $("#a"+numero).addClass('glowLegendary');
           lose++;
           $("#derrota").text(lose);
       }
       else{
         if(costeb>costea){
-          $("#b"+haycartas).addClass('glowLegendary');
+          $("#b"+numero).addClass('glowLegendary');
           win++;
           $("#victoria").text(win);
         }
@@ -325,12 +347,11 @@ $(document).ready(function() {
         $("#b"+haycartas).remove();
         haycartas++;
         showCardRandom(""+haycartas);
+        $("#a"+numero).removeClass('glowLegendary');
+        $("#b"+numero).removeClass('glowLegendary');
         $("#flip").attr('disabled',false);
+        tooltipCartas(numerocartas-(haycartas-1));
       },2000);
-      if(haycartas == numerocartas){
-        $("#contenedora").remove();
-        $("#contenedorb").remove();
-      }
       }
       else{
         if(vida > 0 ){
