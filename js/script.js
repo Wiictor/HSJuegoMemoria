@@ -226,6 +226,9 @@ function funcionJusta(){
   var numero = haycartas+1;
   if(costea>costeb){
       $("#a"+numero).addClass('glowLegendary');
+      var rayos ="<img src='media/rayos.gif' alt='' width='100%' height='100%'>";
+      var rayoshtml = $.parseHTML(rayos);
+      $("#blockcards").append(rayoshtml);
   }
   if(costeb>costea){
     $("#b"+numero).addClass('glowLegendary');
@@ -251,6 +254,8 @@ function funcionJusta(){
       $(".cartahs").flip(false);
       resetCards();
       showCardRandom();
+      $("#blockcards").attr('background','url("../media/prueba.png") no-repeat');
+      $("#blockcards").attr('background-size','cover');
     }
     $("#a"+haycartas).remove();
     $("#b"+haycartas).remove();
@@ -258,9 +263,15 @@ function funcionJusta(){
     showCardRandom2(""+haycartas);
     $("#a"+numero).removeClass('glowLegendary');
     $("#b"+numero).removeClass('glowLegendary');
+
     $("#flip").attr('disabled',false);
     tooltipCartas(numerocartas-(haycartas-1));
-  },1000);
+  },3000);
+  setTimeout(function(){
+    $("#blockcards").text("");
+    $("#blockcards").attr('background','');
+    $("#blockcards").attr('background-size','');
+},3200);
   }
   else{
     if(vida > 0 ){
@@ -476,8 +487,8 @@ $(".cartahs").on('click',function () {
       setTimeout(function(){
         $("#"+id1).flip(false);
         $("#"+id2).flip(false);
-      },600);
-      setTimeout(function(){$("#blockcards").hide();},1100);
+      },3000);
+      setTimeout(function(){$("#blockcards").hide();},3000);
     }
     else{
       cartaslevantadas[0].attr('data-lev','S');
