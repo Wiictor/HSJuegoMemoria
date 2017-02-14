@@ -14,7 +14,7 @@
     position:relative;
     margin-top:20%;
   }
-    .containerai div.cartahs{
+    .containerai div.cartahs2{
       position:absolute;
       top:0px;
       left:0px;
@@ -25,31 +25,21 @@
     p{
       color:#fff;
     }
-    .cardcontainer,.estadisticas{
+    .cardcontainer3,.estadisticas{
       float:left;
     }
-    .cardcontainer{
+    .cardcontainer3{
       margin-top:15%;
+      float:left;
     }
     div.outer { position: relative; width:134.391px; height:220px; top:100px; left: 150px;}
       .inferior{
         margin-top:20em;
       }
-    .cartahs { left:0;top:0; right:0,bottom:0; position: absolute }
-    img{
+    . { left:0;top:0; right:0,bottom:0; position: absolute }
+    div.outer img{
       width:100%;
       height:100%;
-    }
-    #a8,#b8{
-      z-index:1;
-    }
-    #a9,#b9{
-      z-index:1;
-      margin-top:-200px;
-    }
-    #a10,#b10{
-      z-index:1;
-      margin-top:-206px;
     }
     .ultimacarta{
       z-index:1;
@@ -58,7 +48,7 @@
       z-index:1;
       margin-top:-202px;
     }
-    .cartahsactive{
+    .cartahs2active{
     	-webkit-transform: scale(1.4);
     -moz-transform: scale(1.4);
     -o-transform: scale(1.4);
@@ -67,13 +57,13 @@
     -webkit-transition: all 0.3s;
     z-index: 100;
     }
-    .glowLegendary{
-    -webkit-animation: neonLegendary 2s ease-in-out infinite alternate;
-    	animation: neonLegendary 2s ease-in-out infinite alternate;
-    }
     .active{
       background-color: #5d5d5d;
       color:#fff;
+    }
+    .glowLegendary{
+      -webkit-animation: neonLegendary 2s ease-in-out infinite alternate;
+      animation: neonLegendary 2s ease-in-out infinite alternate;
     }
     @keyframes neonLegendary {
       from {
@@ -98,7 +88,7 @@
   <p>Fatiga: <span id="fatiga"></span></p>
   <p>Muerto: <span id="muerto"></span></p>
 </div>
-<div class="cardcontainer">
+<div class="cardcontainer3">
   <div class="outer" id="contenedora">
 </div>
 <div class="outer inferior" id="contenedorb">
@@ -131,14 +121,14 @@
 
     return dataPromise;
   }
-  function showCardRandom(id){
+  function showCardRandom2(id){
     var cardNo = Math.floor(Math.random() * cards.length);
     var cardNo2 = Math.floor(Math.random() * cards.length); // Select a random card number
-    showCard(cardNo,cardNo2, id);
+    showCard2(cardNo,cardNo2, id);
   }
   var repuesto = ["media/REP_1.png","media/REP_2.png","media/REP_3.png","media/REP_4.png","media/REP_5.png"]; //Si alguna imagen falla, tener hasta 5 repuestos alojados en el servidor
   var nrepuesto = 0; //Numero auxiliar de carta de repuesto
-  function showCard(cardNo,cardNo2, string){
+  function showCard2(cardNo,cardNo2, string){
     var obj = cards[cardNo];
     var obj2 = cards[cardNo2];
     $("#a"+string).find('.back img').attr('src', obj.img);
@@ -194,17 +184,17 @@
     var contenedorb = "";
     for(var i=ncartas;i>0;i--){
       if(i==ncartas){
-      contenedora += "<div  id='a"+i+"' class='cartahs ultimacarta'><div class='front'><div class='card'><img src='media/cardleg.jpg' class='pruebaimg' alt=''></div></div<div class='back'><img src='media/cardblank.png' class='pruebaimg' alt=''></div></div>";
-      contenedorb += "<div  id='b"+i+"' class='cartahs ultimacarta'><div class='front'><div class='card'><img src='media/card.png' class='pruebaimg' alt=''></div></div<div class='back'><img src='media/cardblank.png' class='pruebaimg' alt=''></div></div>";
+      contenedora += "<div  id='a"+i+"' class='cartahs2 ultimacarta'><div class='front'><div class='card'><img src='media/cardleg.jpg' class='pruebaimg' alt=''></div></div<div class='back'><img src='media/cardblank.png' class='pruebaimg' alt=''></div></div>";
+      contenedorb += "<div  id='b"+i+"' class='cartahs2 ultimacarta'><div class='front'><div class='card'><img src='media/card.png' class='pruebaimg' alt=''></div></div<div class='back'><img src='media/cardblank.png' class='pruebaimg' alt=''></div></div>";
       }
       else{
-        contenedora += "<div  id='a"+i+"' class='cartahs cartas'><div class='front'><div class='card'><img src='media/cardleg.jpg' class='pruebaimg' alt=''></div></div><div class='back'><img src='media/cardblank.png' class='pruebaimg' alt=''></div></div>";
-        contenedorb += "<div  id='b"+i+"' class='cartahs cartas'><div class='front'><div class='card'><img src='media/card.png' class='pruebaimg' alt=''></div></div><div class='back'><img src='media/cardblank.png' class='pruebaimg' alt=''></div></div>";
+        contenedora += "<div  id='a"+i+"' class='cartahs2 cartas'><div class='front'><div class='card'><img src='media/cardleg.jpg' class='pruebaimg' alt=''></div></div><div class='back'><img src='media/cardblank.png' class='pruebaimg' alt=''></div></div>";
+        contenedorb += "<div  id='b"+i+"' class='cartahs2 cartas'><div class='front'><div class='card'><img src='media/card.png' class='pruebaimg' alt=''></div></div><div class='back'><img src='media/cardblank.png' class='pruebaimg' alt=''></div></div>";
       }
     }
     $("#contenedora").html(contenedora);
     $("#contenedorb").html(contenedorb);
-    $(".cartahs").flip({trigger: 'manual'});
+    $(".cartahs2").flip({trigger: 'manual'});
   }
   function tooltipCartas(cartasr){
     if(cartasr!=0){
@@ -238,7 +228,7 @@ $(document).ready(function() {
     getCardData()
       .done(function(data){
         cards = flattenCards(data);
-        showCardRandom(""+haycartas);
+        showCardRandom2(""+haycartas);
       });
     $("#modo1").on("click",function(){
       // $("#contenedora").remove();
@@ -262,7 +252,7 @@ $(document).ready(function() {
        $("#muerto").text(muerto);
        tooltipCartas(numerocartas-(haycartas-1));
        generaCartas(numerocartas);
-       showCardRandom(""+haycartas);
+       showCardRandom2(""+haycartas);
     });
     $("#modo2").on("click",function(){
       // $("#contenedora").remove();
@@ -288,7 +278,7 @@ $(document).ready(function() {
        generaCartas(numerocartas);
        getCardData()
          .done(function(data){
-       showCardRandom(""+haycartas);
+       showCardRandom2(""+haycartas);
      });
     });
     $("#modo3").on("click",function(){
@@ -313,17 +303,17 @@ $(document).ready(function() {
       $("#muerto").text(muerto);
       tooltipCartas(numerocartas-(haycartas-1));
       generaCartas(numerocartas);
-      showCardRandom(""+haycartas);
+      showCardRandom2(""+haycartas);
     });
-    // $(".cartahs").flip({trigger: 'manual'});
+    // $(".cartahs2").flip({trigger: 'manual'});
     $("#flip").on("click",function(){
       if(haycartas<=numerocartas){
       var costea = parseInt($("#a"+haycartas).attr('data-cost'));
       var costeb = parseInt($("#b"+haycartas).attr('data-cost'));
       $("#a"+haycartas).flip('true');
       $("#b"+haycartas).flip('true');
-      $("#a"+haycartas).addClass('cartahsactive');
-      $("#b"+haycartas).addClass('cartahsactive');
+      $("#a"+haycartas).addClass('cartahs2active');
+      $("#b"+haycartas).addClass('cartahs2active');
       var numero = haycartas+1;
       if(costea>costeb){
           $("#a"+numero).addClass('glowLegendary');
@@ -346,7 +336,7 @@ $(document).ready(function() {
         $("#a"+haycartas).remove();
         $("#b"+haycartas).remove();
         haycartas++;
-        showCardRandom(""+haycartas);
+        showCardRandom2(""+haycartas);
         $("#a"+numero).removeClass('glowLegendary');
         $("#b"+numero).removeClass('glowLegendary');
         $("#flip").attr('disabled',false);

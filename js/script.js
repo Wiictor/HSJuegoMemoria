@@ -44,6 +44,29 @@ function showCardRandom(){
   showCard(cardNo, fila2[i-1], fila2[i+4]);
 }
 }
+function showCardRandomModo(array){
+  var string = '';
+  var cardNum = 5;
+  var listaCartas = [];
+  for(var i=0;i<(array.length/2);i++){
+  var cardNo = Math.floor(Math.random() * cards.length);
+  if(i==1){listaCartas.push(cardNo);}
+   else{
+    while($.inArray(cardNo,listaCartas) != -1){ // Si el valor es distinto de -1, es decir, si encuentra un elemento en el array igual que el random, vuelve a hacer otro hasta que sea distinto.
+       cardNo = Math.floor(Math.random() * cards.length); // Select a random card number
+    }
+    if($.inArray(cardNo,listaCartas) != -1){
+    }
+     listaCartas.push(cardNo);
+   }
+  showCard(cardNo, array[i], array[array.length-1-i]);
+}
+}
+function showCardRandom2(id){
+  var cardNo = Math.floor(Math.random() * cards.length);
+  var cardNo2 = Math.floor(Math.random() * cards.length); // Select a random card number
+  showCard2(cardNo,cardNo2, id);
+}
 function ImprimirObjeto(o) {
     var salida = "";
     for (var p in o) {
@@ -85,6 +108,38 @@ function showCard(cardNo, string, string2){
     }
   });
 }
+function showCard2(cardNo,cardNo2, string){
+  var obj = cards[cardNo];
+  var obj2 = cards[cardNo2];
+  $("#a"+string).find('.back img').attr('src', obj.img);
+  $("#a"+string).attr('data-id',obj.cardId);
+  $("#a"+string).attr('data-rarity',obj.rarity);
+  $("#a"+string).attr('data-cost',obj.cost);
+  $("#b"+string).find('.back img').attr('src', obj2.img);
+  $("#b"+string).attr('data-id',obj2.cardId);
+  $("#b"+string).attr('data-rarity',obj2.rarity);
+  $("#b"+string).attr('data-cost',obj2.cost);
+  // $("#"+string).html(obj.name);
+  // $("#card-type").text(obj.type);
+  // $("#card-faction").text(obj.faction);
+  // $("#player-class").text(obj.playerClass);
+  $("#a"+string).find('.back img').on("error",function() {
+    $(this).attr( "src", repuesto[nrepuesto]);
+    $("#b"+string).find('.back img').attr( "src", repuesto[nrepuesto]);
+    $("#a"+string).attr('data-cost',"0");
+    $("#b"+string).attr('data-cost',"0");
+    $("#a"+string).attr('data-rarity',"Common");
+    $("#b"+string).attr('data-rarity',"Common");
+    if(nrepuesto==2){
+        $("#a"+string).attr('data-rarity',"Epic");
+        $("#b"+string).attr('data-rarity',"Epic");
+    }
+    nrepuesto++;
+    if(nrepuesto>4){
+      nrepuesto = 0;
+    }
+  });
+}
 
 function flattenCards(data){
     // Flatten the object as cards are stored in sets
@@ -111,6 +166,19 @@ function disorderDivs(){
   }
   return array2;
 }
+
+function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+  while (0 !== currentIndex) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+  return array;
+}
+
 function changeDivposition(div1,div2){
   //alert(div1 + " " + div2);
   $("#"+div1).swap({
@@ -118,35 +186,135 @@ function changeDivposition(div1,div2){
     speed: 0
   });
 }
+function generaCartas(ncartas){
+  var contenedora = "";
+  var contenedorb = "";
+  for(var i=ncartas;i>0;i--){
+    if(i==ncartas){
+    contenedora += "<div  id='a"+(i+1)+"' class='cartahs2 ultimacarta'><div class='front'><div><img src='media/fatigue.png' class='pruebaimg' alt=''></div></div><div class='back'><img src='media/cardblank.png' class='pruebaimg' alt=''></div></div>";
+    contenedorb += "<div  id='b"+(i+1)+"' class='cartahs2 ultimacarta'><div class='front'><div><img src='media/fatigue.png' class='pruebaimg' alt=''></div></div><div class='back'><img src='media/cardblank.png' class='pruebaimg' alt=''></div></div>";
+    contenedora += "<div  id='a"+i+"' class='cartahs2 cartas'><div class='front'><div><img src='media/cardleg.jpg' class='pruebaimg' alt=''></div></div><div class='back'><img src='media/cardblank.png' class='pruebaimg' alt=''></div></div>";
+    contenedorb += "<div  id='b"+i+"' class='cartahs2 cartas'><div class='front'><div><img src='media/card.png' class='pruebaimg' alt=''></div></div><div class='back'><img src='media/cardblank.png' class='pruebaimg' alt=''></div></div>";
+    }
+    else{
+      contenedora += "<div  id='a"+i+"' class='cartahs2 cartas'><div class='front'><div><img src='media/cardleg.jpg' class='pruebaimg' alt=''></div></div><div class='back'><img src='media/cardblank.png' class='pruebaimg' alt=''></div></div>";
+      contenedorb += "<div  id='b"+i+"' class='cartahs2 cartas'><div class='front'><div><img src='media/card.png' class='pruebaimg' alt=''></div></div><div class='back'><img src='media/cardblank.png' class='pruebaimg' alt=''></div></div>";
+    }
+  }
+  $("#contenedora").html(contenedora);
+  $("#contenedorb").html(contenedorb);
+  $(".cartahs2").flip({trigger: 'manual'});
+}
+function tooltipCartas(cartasr){
+  if(cartasr!=0){
+  $("#tooltipa").text("Hay "+cartasr+" cartas en el mazo del tabernero.");
+  $("#tooltipb").text("Hay "+cartasr+" cartas en tu mazo.");
+  }
+  else{
+    $("#tooltipa").text("No quedan cartas.");
+    $("#tooltipb").text("No quedan cartas.");
+  }
+}
+function funcionJusta(){
+  if(haycartas<=numerocartas){
+  var costea = parseInt($("#a"+haycartas).attr('data-cost'));
+  var costeb = parseInt($("#b"+haycartas).attr('data-cost'));
+  $("#a"+haycartas).flip('true');
+  $("#b"+haycartas).flip('true');
+  $("#a"+haycartas).addClass('cartahs2active');
+  $("#b"+haycartas).addClass('cartahs2active');
+  var numero = haycartas+1;
+  if(costea>costeb){
+      $("#a"+numero).addClass('glowLegendary');
+  }
+  if(costeb>costea){
+    $("#b"+numero).addClass('glowLegendary');
+    justasganadas++;
+  }
+  $("#flip").attr('disabled',true);
+  setTimeout(function(){
+    if(modojuego == 0 && costea>costeb){
+      resetCards();
+      $(".cartahs").flip(false);
+    }
+    if(modojuego == 1 && costea>costeb){
+      var cartastumbadas = [];
+      for(var l=1;l<=10;l++){
+        if($("#"+l).attr('data-lev') == 'N'){
+          cartastumbadas.push(l);
+        }
+      }
+      cartastumbadas = shuffle(cartastumbadas);
+      showCardRandomModo(cartastumbadas);
+    }
+    if(modojuego == 2 && costea>costeb){
+      $(".cartahs").flip(false);
+      resetCards();
+      showCardRandom();
+    }
+    $("#a"+haycartas).remove();
+    $("#b"+haycartas).remove();
+    haycartas++;
+    showCardRandom2(""+haycartas);
+    $("#a"+numero).removeClass('glowLegendary');
+    $("#b"+numero).removeClass('glowLegendary');
+    $("#flip").attr('disabled',false);
+    tooltipCartas(numerocartas-(haycartas-1));
+  },1000);
+  }
+  else{
+    if(vida > 0 ){
+    fatiga++;
+    vida = vida - fatiga;
+    if(vida<0){
+      muerto=true;
+    }
+    }
+    else{
+      muerto=true;
+    }
+  }
+}
 getCardData(); // Start loading card data ASAP - subsequent calls will return the same promise anyway
 
 var height = window.screen.availHeight;
 var width = window.screen.availWidth;
 var widthcarta = (width*7)/100;
-// var heightcarta = (height*20)/100;
 $(".cartahs").css("width",widthcarta);
 $(".front").css("width",widthcarta);
 $(".back").css("width",widthcarta);
-// $(".cartahs").css("height",heightcarta);
-// $(".front").css("height",heightcarta);
-// $(".back").css("height",heightcarta);
-// $(document).css("width",width);
-// $(document).css("overflow-y","auto");
-// $("body").css("width",width);
-var gameactive = false;
-var modojuego = 0;
-var tiempo_corriendo = null;
 var puntbase = [1000000,3000000,6000000];
-var porcenjusta = [0,0.10,0.25];
+var vidastat = [9999999999,30,30];
+var porcenjusta = [0.05,0.10,0.25];
+var numerocartastat = [20,20,10];
+var numerocartas = 0;
+var justasganadas = 0;
 var segundospunt = 0;
 var puntuacion = 0;
+var modojuego = 2;
+var fatiga = 0;
 var vida = 0;
-var justasganadas = 0;
+var haycartas = 1;
+var muerto = false;
+var gameactive = false;
+var tiempo_corriendo = null;
 var tiempo = {
     hora: 0,
     minuto: 0,
     segundo: 0
 };
+function resetGame(){
+  // modojuego = 0;
+  tiempo_corriendo = null;
+  segundospunt = 0;
+  puntuacion = 0;
+  justasganadas = 0;
+  haycartas = 1;
+  vida = 0;
+  fatiga = 0;
+  muerto = false;
+  tiempo_corriendo = null;
+}
 function allFlipped(){
   var sol = false;
   var cont = 0;
@@ -185,6 +353,10 @@ $("#buttonmusic").on("click",function(){
   }
 });
 $(document).ready(function() {
+  numerocartas = numerocartastat[modojuego];
+  vida = vidastat[modojuego];
+  generaCartas(numerocartas);
+  tooltipCartas(numerocartas-(haycartas-1));
   $("#container").hide();
   $("#container").css("width",width);
   $("#container").css("height",height);
@@ -214,7 +386,7 @@ $(document).ready(function() {
         $(".cartahs").flip();
        cards = flattenCards(data);
        showCardRandom();
-       disorderDivs();
+       showCardRandom2(""+haycartas);
        if(gameactive == true){
        tiempo_corriendo = setInterval(function(){
            // Segundos
@@ -300,18 +472,74 @@ $(".cartahs").on('click',function () {
     if(cartaslevantadas[0].attr('data-id') != cartaslevantadas[1].attr('data-id')){
       var id1 = cartaslevantadas[0].attr('id').toString();
       var id2 = cartaslevantadas[1].attr('id').toString();
+      funcionJusta();
       setTimeout(function(){
         $("#"+id1).flip(false);
         $("#"+id2).flip(false);
       },600);
+      setTimeout(function(){$("#blockcards").hide();},1100);
     }
     else{
       cartaslevantadas[0].attr('data-lev','S');
       cartaslevantadas[1].attr('data-lev','S');
+      setTimeout(function(){$("#blockcards").hide();},1100);
     }
-    setTimeout(function(){$("#blockcards").hide();},600);
     ncartaslevantadas = 0;
     cartaslevantadas = [];
+    if(muerto==true){
+      clearInterval(tiempo_corriendo);
+      gameactive = false;
+      var puntuacionfix = formatNum(puntuacion,".",",");
+      var audiolose = document.createElement('audio');
+      audiolose.src = "sounds/defeat.ogg";
+      audiolose.play();
+      showDialog({
+          title: 'DERROTA!',
+          text: 'Oh no! Has caido en la batalla...',
+          positive: {
+              title: 'CONTINUAR',
+                onClick: function (e) {
+                var numerocartas = numerocartastat[modojuego];
+                botonaudio.src = "sounds/Hub_Click.ogg";
+                botonaudio.play();
+                $(".cartahs").flip(false);
+                resetCards();
+                resetGame();
+                vida = vidastat[modojuego];
+                generaCartas(numerocartas);
+                tooltipCartas(numerocartas-(haycartas-1));
+                showCardRandom();
+                showCardRandom2(""+haycartas);
+                gameactive = true;
+                tiempo_corriendo = setInterval(function(){
+                    // Segundos
+                    tiempo.segundo++;
+                    if(tiempo.segundo >= 60)
+                    {
+                        tiempo.segundo = 0;
+                        tiempo.minuto++;
+                    }
+
+                    // Minutos
+                    if(tiempo.minuto >= 60)
+                    {
+                        tiempo.minuto = 0;
+                        tiempo.hora++;
+                    }
+
+                    $("#horas").text(tiempo.hora < 10 ? '0' + tiempo.hora : tiempo.hora);
+                    $("#minutos").text(tiempo.minuto < 10 ? '0' + tiempo.minuto : tiempo.minuto);
+                    $("#segundos").text(tiempo.segundo < 10 ? '0' + tiempo.segundo : tiempo.segundo);
+                }, 1000);
+              }
+          },
+          cancelable: false
+      });
+      // alert("FELICIDADES, HAS COMPLETADO EL MAPA EN " + segundospunt + " SEGUNDOS.\n LO QUE HACE UN TOTAL DE: "+puntuacion+" PUNTOS!!");
+      tiempo.hora = 0;
+      tiempo.minuto = 0;
+      tiempo.segundo = 0;
+    }
   }
   }
   if(allFlipped() == true){
@@ -329,11 +557,17 @@ $(".cartahs").on('click',function () {
         positive: {
             title: 'CONTINUAR',
               onClick: function (e) {
+              var numerocartas = numerocartastat[modojuego];
               botonaudio.src = "sounds/Hub_Click.ogg";
               botonaudio.play();
               $(".cartahs").flip(false);
-              showCardRandom();
               resetCards();
+              resetGame();
+              vida = vidastat[modojuego];
+              generaCartas(numerocartas);
+              tooltipCartas(numerocartas-(haycartas-1));
+              showCardRandom();
+              showCardRandom2(""+haycartas);
               gameactive = true;
               tiempo_corriendo = setInterval(function(){
                   // Segundos
