@@ -343,17 +343,15 @@ return str;
 }
 $("#buttonmusic").on("click",function(){
   $(this).toggleClass("mdi-volume-off");
-  // $(this).removeClass("mdi-volume-high");
   if($(this).hasClass("mdi-volume-off")){
-  // alert("SIN VOLUMEN GILIPOLLAS");
   $("#boardmusic")[0].pause();
 }
   else{
-    // alert("DALE CAÑA AL MUSICOTE");
     $("#boardmusic")[0].play();
   }
 });
 $(document).ready(function() {
+document.getElementById("boardmusic").play();
   numerocartas = numerocartastat[modojuego];
   vida = vidastat[modojuego];
   generaCartas(numerocartas);
