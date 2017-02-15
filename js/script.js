@@ -226,9 +226,8 @@ function funcionJusta(){
   var numero = haycartas+1;
   if(costea>costeb){
       $("#a"+numero).addClass('glowLegendary');
-      var rayos ="<img src='media/rayos.gif' alt='' width='100%' height='100%'>";
-      var rayoshtml = $.parseHTML(rayos);
-      $("#blockcards").append(rayoshtml);
+      $("#blockcards img").attr('src', "media/rayos.gif")
+      $("#blockcards").addClass('rayos');
   }
   if(costeb>costea){
     $("#b"+numero).addClass('glowLegendary');
@@ -254,8 +253,6 @@ function funcionJusta(){
       $(".cartahs").flip(false);
       resetCards();
       showCardRandom();
-      $("#blockcards").attr('background','url("../media/prueba.png") no-repeat');
-      $("#blockcards").attr('background-size','cover');
     }
     $("#a"+haycartas).remove();
     $("#b"+haycartas).remove();
@@ -268,9 +265,9 @@ function funcionJusta(){
     tooltipCartas(numerocartas-(haycartas-1));
   },3000);
   setTimeout(function(){
-    $("#blockcards").text("");
-    $("#blockcards").attr('background','');
-    $("#blockcards").attr('background-size','');
+    // $("#blockcards").text("");
+    $("#blockcards").removeClass('rayos');
+    $("#blockcards img").attr('src','media/invisible.png');
 },3200);
   }
   else{
@@ -303,7 +300,7 @@ var numerocartas = 0;
 var justasganadas = 0;
 var segundospunt = 0;
 var puntuacion = 0;
-var modojuego = 2;
+var modojuego = 0;
 var fatiga = 0;
 var vida = 0;
 var haycartas = 1;
@@ -347,7 +344,7 @@ function resetCards(){
   }
 }
 function formatNum(num, separator, fraction) {
-var str = num.toLocaleString('es-ES');
+var str = num.toLocaleString('en-US');
 str = str.replace(/\./, fraction);
 str = str.replace(/,/g, separator);
 return str;
@@ -558,13 +555,13 @@ $(".cartahs").on('click',function () {
     gameactive = false;
     segundospunt = (tiempo.hora*3600)+(tiempo.minuto*60)+(tiempo.segundo);
     puntuacion = Math.round((puntbase[modojuego]/(segundospunt/60))*(1+(porcenjusta[modojuego]*justasganadas)));
-    var puntuacionfix = formatNum(puntuacion,".",",");
+    var puntuacionfix = formatNum(puntuacion,".",",").toString();
     var audiowin = document.createElement('audio');
     audiowin.src = "sounds/victory.ogg";
     audiowin.play();
     showDialog({
         title: 'FELICIDADES!',
-        text: 'Has completado el mapa en '+segundospunt+' segundos<br/> Lo que hace un total de: <bolder>'+ puntuacionfix +'</bolder> puntos!',
+        text: 'Has completado el mapa en '+segundospunt+' segundos<br/> Lo que hace un total de: <br/><bolder>'+ puntuacionfix +'</bolder> puntos!',
         positive: {
             title: 'CONTINUAR',
               onClick: function (e) {
