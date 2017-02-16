@@ -284,7 +284,7 @@ function funcionJusta(){
   }
 }
 getCardData(); // Start loading card data ASAP - subsequent calls will return the same promise anyway
-
+var botonaudio = document.createElement('audio');
 var height = window.screen.availHeight;
 var width = window.screen.availWidth;
 var widthcarta = (width*7)/100;
@@ -349,6 +349,23 @@ str = str.replace(/\./, fraction);
 str = str.replace(/,/g, separator);
 return str;
 }
+$('.loginPanel').click(function(){
+modojuego = $(this).attr('value');
+// alert(modojuego);
+            if ($('#contenedormenu').is(':hidden')) {
+               $('#userNav2').show('slide',{direction:'right'},1000);
+               $('#userNav').show('slide',{direction:'left'},1000);
+            }
+            else {
+               $('#userNav2').hide('slide',{direction:'right'},1000);
+               $('#userNav').hide('slide',{direction:'left'},1000);
+               setTimeout(function(){
+                 $("#contenedormenu,#contenedormenu2").hide();
+                 empiezaJuego();
+               },1100);
+            }
+
+});
 $("#buttonmusic").on("click",function(){
   $(this).toggleClass("mdi-volume-off");
   if($(this).hasClass("mdi-volume-off")){
@@ -358,12 +375,45 @@ $("#buttonmusic").on("click",function(){
     $("#boardmusic")[0].play();
   }
 });
+function empiezaJuego(){
+  document.getElementById("boardmusic").play();
+  resetCards();
+  resetGame();
+  gameactive = true;
+    numerocartas = numerocartastat[modojuego];
+    vida = vidastat[modojuego];
+    generaCartas(numerocartas);
+    tooltipCartas(numerocartas-(haycartas-1));
+    showCardRandom();
+    showCardRandom2(""+haycartas);
+    botonaudio.src = "sounds/Hub_Click.ogg";
+    botonaudio.play();
+    $(".cartahs").flip(false);
+    tiempo_corriendo = setInterval(function(){
+        // Segundos
+        tiempo.segundo++;
+        if(tiempo.segundo >= 60)
+        {
+            tiempo.segundo = 0;
+            tiempo.minuto++;
+        }
+
+        // Minutos
+        if(tiempo.minuto >= 60)
+        {
+            tiempo.minuto = 0;
+            tiempo.hora++;
+        }
+
+        $("#horas").text(tiempo.hora < 10 ? '0' + tiempo.hora : tiempo.hora);
+        $("#minutos").text(tiempo.minuto < 10 ? '0' + tiempo.minuto : tiempo.minuto);
+        $("#segundos").text(tiempo.segundo < 10 ? '0' + tiempo.segundo : tiempo.segundo);
+    }, 1000);
+    tiempo.hora = 0;
+    tiempo.minuto = 0;
+    tiempo.segundo = 0;
+  }
 $(document).ready(function() {
-document.getElementById("boardmusic").play();
-  numerocartas = numerocartastat[modojuego];
-  vida = vidastat[modojuego];
-  generaCartas(numerocartas);
-  tooltipCartas(numerocartas-(haycartas-1));
   $("#container").hide();
   $("#container").css("width",width);
   $("#container").css("height",height);
@@ -388,35 +438,35 @@ document.getElementById("boardmusic").play();
   });
   getCardData()
     .done(function(data){
-      gameactive = true;
+      // gameactive = true;
         // $("#timer").attr('background-image','url("media/timer.gif")')
         $("#blockcards").hide();
         $(".cartahs").flip();
        cards = flattenCards(data);
        showCardRandom();
        showCardRandom2(""+haycartas);
-       if(gameactive == true){
-       tiempo_corriendo = setInterval(function(){
-           // Segundos
-           tiempo.segundo++;
-           if(tiempo.segundo >= 60)
-           {
-               tiempo.segundo = 0;
-               tiempo.minuto++;
-           }
-
-           // Minutos
-           if(tiempo.minuto >= 60)
-           {
-               tiempo.minuto = 0;
-               tiempo.hora++;
-           }
-
-           $("#horas").text(tiempo.hora < 10 ? '0' + tiempo.hora : tiempo.hora);
-           $("#minutos").text(tiempo.minuto < 10 ? '0' + tiempo.minuto : tiempo.minuto);
-           $("#segundos").text(tiempo.segundo < 10 ? '0' + tiempo.segundo : tiempo.segundo);
-       }, 1000);
-      }
+      //  if(gameactive == true){
+      //  tiempo_corriendo = setInterval(function(){
+      //      // Segundos
+      //      tiempo.segundo++;
+      //      if(tiempo.segundo >= 60)
+      //      {
+      //          tiempo.segundo = 0;
+      //          tiempo.minuto++;
+      //      }
+      //
+      //      // Minutos
+      //      if(tiempo.minuto >= 60)
+      //      {
+      //          tiempo.minuto = 0;
+      //          tiempo.hora++;
+      //      }
+      //
+      //      $("#horas").text(tiempo.hora < 10 ? '0' + tiempo.hora : tiempo.hora);
+      //      $("#minutos").text(tiempo.minuto < 10 ? '0' + tiempo.minuto : tiempo.minuto);
+      //      $("#segundos").text(tiempo.segundo < 10 ? '0' + tiempo.segundo : tiempo.segundo);
+      //  }, 1000);
+      // }
        $("#container").slideDown();
     });
   resetCards();
@@ -507,38 +557,41 @@ $(".cartahs").on('click',function () {
           positive: {
               title: 'CONTINUAR',
                 onClick: function (e) {
-                var numerocartas = numerocartastat[modojuego];
                 botonaudio.src = "sounds/Hub_Click.ogg";
-                botonaudio.play();
                 $(".cartahs").flip(false);
-                resetCards();
-                resetGame();
-                vida = vidastat[modojuego];
-                generaCartas(numerocartas);
-                tooltipCartas(numerocartas-(haycartas-1));
-                showCardRandom();
-                showCardRandom2(""+haycartas);
-                gameactive = true;
-                tiempo_corriendo = setInterval(function(){
-                    // Segundos
-                    tiempo.segundo++;
-                    if(tiempo.segundo >= 60)
-                    {
-                        tiempo.segundo = 0;
-                        tiempo.minuto++;
-                    }
-
-                    // Minutos
-                    if(tiempo.minuto >= 60)
-                    {
-                        tiempo.minuto = 0;
-                        tiempo.hora++;
-                    }
-
-                    $("#horas").text(tiempo.hora < 10 ? '0' + tiempo.hora : tiempo.hora);
-                    $("#minutos").text(tiempo.minuto < 10 ? '0' + tiempo.minuto : tiempo.minuto);
-                    $("#segundos").text(tiempo.segundo < 10 ? '0' + tiempo.segundo : tiempo.segundo);
-                }, 1000);
+                $("#contenedormenu,#contenedormenu2").show();
+                   $('#userNav2').show('slide',{direction:'right'},1000);
+                   $('#userNav').show('slide',{direction:'left'},1000);
+              //   var numerocartas = numerocartastat[modojuego];
+              //   resetCards();
+              //   resetGame();
+              //   vida = vidastat[modojuego];
+              //   generaCartas(numerocartas);
+              //   tooltipCartas(numerocartas-(haycartas-1));
+              //   showCardRandom();
+              //   showCardRandom2(""+haycartas);
+              //   gameactive = true;
+              //   tiempo_corriendo = setInterval(function(){
+              //     // Segundos
+              //     tiempo.segundo++;
+              //     if(tiempo.segundo >= 60)
+              //     {
+              //       tiempo.segundo = 0;
+              //       tiempo.minuto++;
+              //     }
+              //
+              //     // Minutos
+              //     if(tiempo.minuto >= 60)
+              //     {
+              //       tiempo.minuto = 0;
+              //       tiempo.hora++;
+              //     }
+              //
+              //     $("#horas").text(tiempo.hora < 10 ? '0' + tiempo.hora : tiempo.hora);
+              //     $("#minutos").text(tiempo.minuto < 10 ? '0' + tiempo.minuto : tiempo.minuto);
+              //     $("#segundos").text(tiempo.segundo < 10 ? '0' + tiempo.segundo : tiempo.segundo);
+              //   }, 1000);
+              //   botonaudio.play();
               }
           },
           cancelable: false
@@ -565,38 +618,41 @@ $(".cartahs").on('click',function () {
         positive: {
             title: 'CONTINUAR',
               onClick: function (e) {
-              var numerocartas = numerocartastat[modojuego];
               botonaudio.src = "sounds/Hub_Click.ogg";
               botonaudio.play();
               $(".cartahs").flip(false);
-              resetCards();
-              resetGame();
-              vida = vidastat[modojuego];
-              generaCartas(numerocartas);
-              tooltipCartas(numerocartas-(haycartas-1));
-              showCardRandom();
-              showCardRandom2(""+haycartas);
-              gameactive = true;
-              tiempo_corriendo = setInterval(function(){
-                  // Segundos
-                  tiempo.segundo++;
-                  if(tiempo.segundo >= 60)
-                  {
-                      tiempo.segundo = 0;
-                      tiempo.minuto++;
-                  }
-
-                  // Minutos
-                  if(tiempo.minuto >= 60)
-                  {
-                      tiempo.minuto = 0;
-                      tiempo.hora++;
-                  }
-
-                  $("#horas").text(tiempo.hora < 10 ? '0' + tiempo.hora : tiempo.hora);
-                  $("#minutos").text(tiempo.minuto < 10 ? '0' + tiempo.minuto : tiempo.minuto);
-                  $("#segundos").text(tiempo.segundo < 10 ? '0' + tiempo.segundo : tiempo.segundo);
-              }, 1000);
+              $("#contenedormenu,#contenedormenu2").show();
+                 $('#userNav2').show('slide',{direction:'right'},1000);
+                 $('#userNav').show('slide',{direction:'left'},1000);
+            //   var numerocartas = numerocartastat[modojuego];
+            //   resetCards();
+            //   resetGame();
+            //   vida = vidastat[modojuego];
+            //   generaCartas(numerocartas);
+            //   tooltipCartas(numerocartas-(haycartas-1));
+            //   showCardRandom();
+            //   showCardRandom2(""+haycartas);
+            //   gameactive = true;
+            //   tiempo_corriendo = setInterval(function(){
+            //       // Segundos
+            //       tiempo.segundo++;
+            //       if(tiempo.segundo >= 60)
+            //       {
+            //           tiempo.segundo = 0;
+            //           tiempo.minuto++;
+            //       }
+            //
+            //       // Minutos
+            //       if(tiempo.minuto >= 60)
+            //       {
+            //           tiempo.minuto = 0;
+            //           tiempo.hora++;
+            //       }
+            //
+            //       $("#horas").text(tiempo.hora < 10 ? '0' + tiempo.hora : tiempo.hora);
+            //       $("#minutos").text(tiempo.minuto < 10 ? '0' + tiempo.minuto : tiempo.minuto);
+            //       $("#segundos").text(tiempo.segundo < 10 ? '0' + tiempo.segundo : tiempo.segundo);
+            //   }, 1000);
             }
         },
         cancelable: false
@@ -607,7 +663,7 @@ $(".cartahs").on('click',function () {
     tiempo.segundo = 0;
   }
 });
-  var botonaudio = document.createElement('audio');
+
   $("#ajustes").mouseenter(function() {
     botonaudio.src = "sounds/Hub_Mouseover.ogg";
     botonaudio.play();
@@ -686,33 +742,4 @@ $(".cartahs").on('click',function () {
     });
   }
 });
-  //  $('#nextCard').on('click',function(){
-  //    //showCardRandom();
-  //    botonaudio.src = "sounds/Hub_Click.ogg";
-  //    botonaudio.play();
-  //    $(".cartahs").flip(false);
-  //    setTimeout(function(){ showCardRandom(); }, 1000);
-  //    resetCards();
-  //    tiempo_corriendo = setInterval(function(){
-  //        // Segundos
-  //        tiempo.segundo++;
-  //        if(tiempo.segundo >= 60)
-  //        {
-  //            tiempo.segundo = 0;
-  //            tiempo.minuto++;
-  //        }
-   //
-  //        // Minutos
-  //        if(tiempo.minuto >= 60)
-  //        {
-  //            tiempo.minuto = 0;
-  //            tiempo.hora++;
-  //        }
-   //
-  //        $("#horas").text(tiempo.hora < 10 ? '0' + tiempo.hora : tiempo.hora);
-  //        $("#minutos").text(tiempo.minuto < 10 ? '0' + tiempo.minuto : tiempo.minuto);
-  //        $("#segundos").text(tiempo.segundo < 10 ? '0' + tiempo.segundo : tiempo.segundo);
-  //    }, 1000);
-  //    $(this).flip(true);
-  //  });
 });

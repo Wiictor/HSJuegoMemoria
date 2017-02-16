@@ -38,6 +38,38 @@ html, body {
 	background: url('../media/board.png') no-repeat;
 	background-size:contain;
 }
+#userNav{
+	background: url("../media/board1.jpg") no-repeat;
+	background-size:cover;
+	height:100%;
+	z-index:5000;
+}
+#userNav2{
+	background: url("../media/board2.jpg") no-repeat;
+	background-size:cover;
+	z-index:5000;
+	height:100%;
+}
+#contenedormenu{
+	position:absolute;
+	width:50%;
+	height:100%;
+	float:left;
+	z-index:5000;
+}
+#contenedormenu2{
+	position:absolute;
+	height:100%;
+	width:50%;
+	float:right;
+	margin-left:50%;
+	z-index:5000;
+}
+a {
+	color: #000;
+	/*cursor:pointer;*/
+	display:block;
+}
 /*#nextCard{
 	position:absolute;
 	margin-top: 22.8%;
@@ -239,7 +271,7 @@ button:hover {
 .card:hover, .cartahs:hover{
 	cursor: url(../media/eye.ani),url(../media/hand.cur),default;
 }
-.card:active, .cartahs:active, button:active{
+.card:active, .cartahs:active, button:active, a:active{
 	cursor: url(../media/handclick.cur),url(../media/hand.cur),default;
 }
 .card:hover, .cartahs:hover{
