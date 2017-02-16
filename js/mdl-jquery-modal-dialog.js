@@ -21,6 +21,7 @@ function showDialog(options) {
         id: 'orrsDiag',
         title: null,
         text: null,
+        button:null,
         neutral: false,
         negative: false,
         positive: false,
@@ -45,6 +46,9 @@ function showDialog(options) {
     }
     if (options.text != null) {
         $('<p>' + options.text + '</p>').appendTo(content);
+    }
+    if(options.button != null){
+      $(options.button).appendTo(content);
     }
     if (options.neutral || options.negative || options.positive) {
         var buttonBar = $('<div class="mdl-card__actions dialog-button-bar"></div>');

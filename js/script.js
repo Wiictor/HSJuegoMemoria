@@ -413,6 +413,14 @@ function empiezaJuego(){
     tiempo.minuto = 0;
     tiempo.segundo = 0;
   }
+  $(".volvermenu").on('click',function(){
+    botonaudio.src = "sounds/Hub_Click.ogg";
+    botonaudio.play();
+    $(".cartahs").flip(false);
+    $("#contenedormenu,#contenedormenu2").show();
+       $('#userNav2').show('slide',{direction:'right'},1000);
+       $('#userNav').show('slide',{direction:'left'},1000);
+  });
 $(document).ready(function() {
   $("#container").hide();
   $("#container").css("width",width);
@@ -668,12 +676,14 @@ $(".cartahs").on('click',function () {
     botonaudio.src = "sounds/Hub_Mouseover.ogg";
     botonaudio.play();
   });
+
   $("#ajustes").on('click',function(){
     gameactive = false;
     clearInterval(tiempo_corriendo);
     showDialog({
         title: 'MENU',
-        text: 'El juego se encuentra en pausa!',
+        text: 'El juego se encuentra en pausa! </br>',
+        button: '<button class="volvermenu" style="width:50%; text-align:center; margin-left:25%;">Volver al menú principal</button>',
         positive: {
             title: 'CONTINUAR',
               onClick: function (e) {
