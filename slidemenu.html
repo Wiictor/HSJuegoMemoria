@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Slide menu</title>
+  <style>
+    a {
+      color: #000;
+      cursor:pointer;
+      display:block;
+  }
+  body,html{
+    height:100%;
+    overflow:hidden;
+  }
+  #userNav2,  #userNav {
+      width: 100%;
+      height: 100%;
+      background: #ff4444;
+      float:left;
+      /*display:none;*/
+  }
+  #contenedormenu{
+    width:50%;
+    height:90%;
+    float:left;
+  }
+  #contenedormenu2{
+    width:50%;
+    height:90%;
+    float:left;
+  }
+  </style>
+</head>
+<body>
+  <a id="loginPanel">Abrir/Cerrar menú</a>
+  <div id="contenedormenu">
+<div id="userNav">Panel 1</div>
+
+</div>
+  <div id="contenedormenu2">
+    <div id="userNav2">Panel 2</div>
+  </div>
+<script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+  <script
+  src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+  integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+  crossorigin="anonymous"></script>
+<script>
+    $('#loginPanel').click(function(){
+
+                if ($('#userNav2').is(':hidden')) {
+                   $('#userNav2').show('slide',{direction:'right'},1000);
+                   $('#userNav').show('slide',{direction:'left'},1000);
+                }
+                else {
+
+                   $('#userNav2').hide('slide',{direction:'right'},1000);
+                   $('#userNav').hide('slide',{direction:'left'},1000);
+                }
+
+  });
+</script>
+</body>
+</html>
