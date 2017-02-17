@@ -226,11 +226,23 @@ function funcionJusta(){
   var numero = haycartas+1;
   if(costea>costeb){
       $("#a"+numero).addClass('glowLegendary');
-      $("#blockcards img").attr('src', "media/rayos.gif")
-      $("#blockcards").addClass('rayos');
+      var sonidojustaperdida = document.createElement('audio');
+      sonidojustaperdida.src = "sounds/losejusta.wav";
+      sonidojustaperdida.play();
+      setTimeout(function(){
+        var sonidorayos = document.createElement('audio');
+        sonidorayos.src = "sounds/strike.wav";
+        sonidorayos.play();
+        $("#blockcards img").attr('src', "media/rayos.gif")
+        $("#blockcards").addClass('rayos');
+      },1500);
+
   }
   if(costeb>costea){
     $("#b"+numero).addClass('glowLegendary');
+    var sonidojustaganada = document.createElement('audio');
+    sonidojustaganada.src = "sounds/winjusta.wav";
+    sonidojustaganada.play();
     justasganadas++;
   }
   $("#flip").attr('disabled',true);
@@ -376,7 +388,13 @@ $("#buttonmusic").on("click",function(){
   }
 });
 function empiezaJuego(){
-  document.getElementById("boardmusic").play();
+  // document.getElementById("boardmusic").play();
+  if($(".musica i").hasClass("mdi-volume-off")){
+  $("#boardmusic")[0].pause();
+}
+  else{
+    $("#boardmusic")[0].play();
+  }
   resetCards();
   resetGame();
   gameactive = true;
@@ -683,9 +701,9 @@ $(".cartahs").on('click',function () {
     showDialog({
         title: 'MENU',
         text: 'El juego se encuentra en pausa! </br>',
-        button: '<button class="volvermenu" style="width:50%; text-align:center; margin-left:25%;">Volver al menú principal</button>',
-        positive: {
-            title: 'CONTINUAR',
+        button: '<img src="media/botonrendirse.png" width="100%"></img>',
+        negative: {
+            title: '            ',
               onClick: function (e) {
               gameactive = true;
               botonaudio.src = "sounds/Hub_Click.ogg";

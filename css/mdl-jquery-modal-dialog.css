@@ -35,6 +35,9 @@
   margin-top:-7%;
   color: rgba(14, 28, 108, 0);
 }
+#negative{
+  margin-top:-2%;
+}
 .dialog-button-bar {
     text-align: center;
     margin-top: 8px;

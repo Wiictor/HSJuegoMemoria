@@ -48,7 +48,22 @@ function showDialog(options) {
         $('<p>' + options.text + '</p>').appendTo(content);
     }
     if(options.button != null){
-      $(options.button).appendTo(content);
+      var url = "media/botoncontinuar.png";
+      var optionsButton = $("<a style='width:25%; margin-left:auto; margin-right:auto;'>"+options.button+"</a>");
+      optionsButton.on("click",function (e) {
+          e.preventDefault();
+          // alert("va");
+          $("#boardmusic")[0].pause();
+          var audio = document.createElement('audio')
+          audio.src = "sounds/Hub_Click.ogg";
+          audio.play();
+          $(".cartahs").flip(false);
+          $("#contenedormenu,#contenedormenu2").show();
+             $('#userNav2').show('slide',{direction:'right'},1000);
+             $('#userNav').show('slide',{direction:'left'},1000);
+             hideDialog(dialog);
+      });
+      optionsButton.appendTo(content);
     }
     if (options.neutral || options.negative || options.positive) {
         var buttonBar = $('<div class="mdl-card__actions dialog-button-bar"></div>');
@@ -72,11 +87,17 @@ function showDialog(options) {
                 title: 'Cancel',
                 onClick: null
             }, options.negative);
-            var negButton = $('<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="' + options.negative.id + '">' + options.negative.title + '</button>');
+            var negButton = $('<button class="mdl-button mdl-js-button mdl-js-ripple-effect" style="min-width:25%; background:url(\'media/botoncontinuar.png\');background-size:cover;background-repeat:no-repeat;" id="' + options.negative.id + '">' + options.negative.title + '</button>');
             negButton.click(function (e) {
                 e.preventDefault();
                 if (options.negative.onClick == null || !options.negative.onClick(e))
                     hideDialog(dialog)
+            });
+            $(document).bind("keyup.dialog", function (e) {
+                if (e.which == 13){
+                  if (options.positive.onClick == null || !options.positive.onClick(e))
+                      hideDialog(dialog);
+                  }
             });
             negButton.appendTo(buttonBar);
         }
