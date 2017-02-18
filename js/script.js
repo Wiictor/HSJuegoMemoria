@@ -227,7 +227,7 @@ function funcionJusta(){
   if(costea>costeb){
       $("#a"+numero).addClass('glowLegendary');
       var sonidojustaperdida = document.createElement('audio');
-      sonidojustaperdida.src = "sounds/losejusta.wav";
+      sonidojustaperdida.src = "sounds/losejusta.mp3";
       sonidojustaperdida.play();
       setTimeout(function(){
         var sonidorayos = document.createElement('audio');
@@ -241,7 +241,7 @@ function funcionJusta(){
   if(costeb>costea){
     $("#b"+numero).addClass('glowLegendary');
     var sonidojustaganada = document.createElement('audio');
-    sonidojustaganada.src = "sounds/winjusta.wav";
+    sonidojustaganada.src = "sounds/winjusta2.wav";
     sonidojustaganada.play();
     justasganadas++;
   }
@@ -439,6 +439,9 @@ function empiezaJuego(){
        $('#userNav2').show('slide',{direction:'right'},1000);
        $('#userNav').show('slide',{direction:'left'},1000);
   });
+$(window).bind("load", function() {
+  $('#load').fadeOut(2000);
+});
 $(document).ready(function() {
   $("#container").hide();
   $("#container").css("width",width);
