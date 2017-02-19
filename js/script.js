@@ -286,6 +286,9 @@ function funcionJusta(){
     if(vida > 0 ){
     fatiga++;
     vida = vida - fatiga;
+    if(modojuego!=0){
+    $("#spanvida").text(vida);
+    }
     if(vida<0){
       muerto=true;
     }
@@ -335,6 +338,7 @@ function resetGame(){
   fatiga = 0;
   muerto = false;
   tiempo_corriendo = null;
+
 }
 function allFlipped(){
   var sol = false;
@@ -361,8 +365,14 @@ str = str.replace(/\./, fraction);
 str = str.replace(/,/g, separator);
 return str;
 }
-$('.loginPanel').click(function(){
-modojuego = $(this).attr('value');
+function sueltaFicha(modo){
+$("#spanvida").text("0");
+$("#blockcards2").html("<p style='margin-top:25%;font-size:60px;'>EL JUEGO COMIENZA EN 3 SEGUNDOS...</p>");
+modojuego = modo;
+var counter = 4;
+var sonidojuego = document.createElement('audio');
+sonidojuego.src = "sounds/box_center_disk_flip.ogg";
+sonidojuego.play();
 // alert(modojuego);
             if ($('#contenedormenu').is(':hidden')) {
                $('#userNav2').show('slide',{direction:'right'},1000);
@@ -371,13 +381,28 @@ modojuego = $(this).attr('value');
             else {
                $('#userNav2').hide('slide',{direction:'right'},1000);
                $('#userNav').hide('slide',{direction:'left'},1000);
+               $("#blockcards2").show();
+             var tt=setInterval(function(){startTime()},1000);
+             function startTime()
+             {
+                 if(counter == 0) {
+                     clearInterval(tt);
+                 } else {
+                     counter--;
+                 }
+
+                 $("#blockcards2").html("<p style='margin-top:25%;font-size:60px;'>EL JUEGO COMIENZA EN " + counter + " SEGUNDOS...</p>");
+             }
                setTimeout(function(){
                  $("#contenedormenu,#contenedormenu2").hide();
                  empiezaJuego();
-               },1100);
+                 $("#blockcards2").hide();
+                 $("#blockcards2").html("");
+               },4000);
+               counter = 4;
             }
 
-});
+}
 $("#buttonmusic").on("click",function(){
   $(this).toggleClass("mdi-volume-off");
   if($(this).hasClass("mdi-volume-off")){
@@ -400,12 +425,18 @@ function empiezaJuego(){
   gameactive = true;
     numerocartas = numerocartastat[modojuego];
     vida = vidastat[modojuego];
+    if(modojuego!=0){
+    $("#spanvida").text(vida);
+    }
+    else{
+    $("#spanvida").text("0");
+    }
     generaCartas(numerocartas);
     tooltipCartas(numerocartas-(haycartas-1));
     showCardRandom();
     showCardRandom2(""+haycartas);
     botonaudio.src = "sounds/Hub_Click.ogg";
-    botonaudio.play();
+    // botonaudio.play();
     $(".cartahs").flip(false);
     tiempo_corriendo = setInterval(function(){
         // Segundos
@@ -443,6 +474,16 @@ $(window).bind("load", function() {
   $('#load').fadeOut(2000);
 });
 $(document).ready(function() {
+  $('.draggable').draggable({ scroll: true, cursor: "move", revert: true,scroll: false,stack: "div",containment: "document",revertDuration: 1000});
+  $('#iconaccept').droppable( {
+    drop: handleDropEvent,
+    hoverClass: 'glowLegendary'
+  } );
+
+  function handleDropEvent( event, ui ) {
+  var draggable = ui.draggable;
+  sueltaFicha(draggable.attr('value'));
+  }
   $("#container").hide();
   $("#container").css("width",width);
   $("#container").css("height",height);

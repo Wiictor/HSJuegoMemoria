@@ -184,6 +184,18 @@ a {
 	background-size:cover;
 	z-index:900;
 }
+#blockcards2{
+	position:absolute;
+	background-color: rgba(0, 0, 0, 0.5);
+	top:0;
+	left:0;
+	width:99%;
+	height:99%;
+	color:white;
+	text-align: center;
+	background-size:cover;
+	z-index:900;
+}
 .rayos{
 	height:100%;
 	opacity: 1;

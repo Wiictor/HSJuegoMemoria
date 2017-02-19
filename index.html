@@ -22,11 +22,20 @@
 			<img src="media/cat.png" style="position:absolute; top: 0;left: 0;" alt="" id="logocat">
 			</div>
 		</div>
+		<!-- <div id="iconaccept" style="background-color: rgba(111, 186, 96, 0.54); border-radius: 50%; width: 18%; height:32%;position:absolute;z-index:6000; margin-left:41%;margin-top:20%;overflow:visible;"></div> -->
 		<div id="contenedormenu">
-	<div id="userNav"><button class="loginPanel" value="0">Modo Fácil</button>
-	<button class="loginPanel" value="1">Modo normal</button>
-<button class="loginPanel" value="2">Modo difícil</button></div>
-
+	<div id="userNav">
+<div id="iconaccept" style="border-radius: 50%; width: 35%; height:35%;position:absolute; margin-left:83%;margin-top:36%;overflow:visible;"></div>
+<div id="facilcont" style="background:url('media/containerfacil.png') no-repeat; background-size: cover; width:20%; height:27%; position:absolute; margin-top:8%; margin-left:10%;">
+	<img src="media/medal_key_11.png" width=90% alt="medalla facil" class="draggable" value="0">
+</div>
+<div id="normalcont" style="background:url('media/containernormal.png') no-repeat; background-size: cover; width:20%; height:27%; position:absolute; margin-top:38%; margin-left:10%;">
+	<img src="media/medal_key_12.png" width=90% alt="medalla normal" class="draggable" value="1">
+</div>
+<div id="dificilcont" style="background:url('media/containerdificil.png') no-repeat; background-size: cover; width:20%; height:27%; position:absolute; margin-top:68%; margin-left:10%;">
+	<img src="media/medal_key_13.png" width=90% alt="medalla dificil" class="draggable" value="2">
+</div>
+</div>
 	</div>
 		<div id="contenedormenu2">
 			<div id="userNav2">
@@ -41,6 +50,8 @@
 					</button>
 				</div>
 			</div>
+		</div>
+		<div id="blockcards2">
 		</div>
 		<div id="blockcards">
 			<img src='media/invisible.png' alt='' width='100%' height='100%'>
@@ -63,6 +74,18 @@
 			<!-- </p> -->
 		</div>
 		<!-- <button id="nextCard" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" >Loading Data...</button> -->
+		<div id="vidauser"  style="position:absolute; z-index:200; width:15%; height:27%; margin-left:48%; margin-top:45%;">
+		<span id="spanvida"style="
+   margin-left: 4%;
+   margin-top: 11%;
+   font-size:2em;
+   color:white;
+   -webkit-text-stroke-width: 1.2px;
+   -webkit-text-stroke-color: black;
+   position: absolute;
+   ">0</span>
+	 <img src="media/drophp.png" alt="">
+		</div>
 	<div class="cardcontainer1">
 		<div  id="1" class="cartahs">
 			<div class="front">
@@ -167,10 +190,6 @@
 <div class="mdl-tooltip" data-mdl-for="contenedorb" id="tooltipb">
 </div>
 </div>
-<!-- <div class="rayos">
-
-</div> -->
-
 </div>
 
 	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
