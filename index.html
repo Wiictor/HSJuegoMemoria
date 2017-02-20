@@ -7,6 +7,7 @@
 	<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
 	<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" href="https://www.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 	<link href="css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" type="text/css" href="css/core.css">
 	<link rel="shortcut icon" href="media/Cards.png">
@@ -39,6 +40,7 @@
 	</div>
 		<div id="contenedormenu2">
 			<div id="userNav2">
+				<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" id="botontutorial"></button>
 				<div id="user-container" style="float:right; margin-right:10%; margin-top: 10%;">
 					<div hidden id="user-pic"></div>
 					<div hidden id="user-name"></div>
@@ -50,6 +52,8 @@
 					</button>
 				</div>
 			</div>
+
+
 		</div>
 		<div id="blockcards2">
 		</div>
@@ -191,16 +195,120 @@
 </div>
 </div>
 </div>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content" id="modalayuda">
+			<div class="modal-header">
+				<h4 class="js-title-step"></h4>
+			</div>
+			<div class="modal-body">
+				<div class="row hide" data-step="1" data-title="Comencemos!">
+						<div style="float:left; width:50%;">
+						<img src="media/Cards.png" alt="" width="40%;" >
+						</div>
+						<div style="float:right; width:50%;">
+						<p>El objetivo de este juego de memoria es acertar todas las parejas del tablero!</p>
+						<p>Para ello, te encontraras una serie de obstaculos que dificultaran tu camino hacia la victoria.</p>
+						</div>
+				</div>
+				<div class="row hide" data-step="2" data-title="Veamos esas cartas!">
+					<div style="float:left; width:50%;">
+					<img src="media/acierto.gif" alt="" width="40%;" >
+					</div>
+					<div style="float:right; width:50%;">
+					<p>Si aciertas dos cartas iguales, estas quedaran volteadas.</p>
+					<p>Pero ten cuidado, en algunos modos si te equivocas posteriormente, podrias perder tu progreso!</p>
+					</div>
+				</div>
+				<div class="row hide" data-step="3" data-title="Modos de juego">
+				<div style="float:left; width:35%;">
+				<img src="media/drag.gif" alt="" width="100%">
+				</div>
+				<div style="float:right; width:65%;">
+					<p>Para comenzar a jugar, arrastra la ficha del modo correspondiente al centro del tablero.</p>
+					<p>El juego se compone de tres modos de juego principales:</p>
+				<ul class="list-unstyled">
+					<li>FACIL:Sin vida y con 20 cartas en nuestro mazo, no podremos perder.</li>
+					<li>NORMAL: 30 puntos de vida, y 20 cartas en nuestro mazo, si perdemos todas nuestras cartas y la vida llega a 0 perderemos la partida.</li>
+					<li>DIFICIL:30 puntos de vida y 10 cartas en nuestro mazo, si perdemos todas nuestras cartas y la vida llega a 0 perderemos la partida.</li>
+				</ul>
+				<p>Cada modo tiene sus variaciones especificas que seran afectadas por la justa, las analizaremos a continuacion.</p>
+				</div>
+				</div>
+				<div class="row hide" data-step="4" data-title="La justa">
+				<div style="float:left; width:35%;">
+				<img src="media/justa.gif" alt="" width="80%">
+				<p style="font-size:10px;">Ejemplo de justa perdida.</p>
+				</div>
+				<div style="float:right; width:65%;">
+					<p>La justa es un sistema aleatorio para saber que ocurrira con el destino del jugador, para ellos usaremos los mazos del juego.</p>
+					<p>El mazo superior sera el del oponente (el servidor), y el inferior sera nuestro mazo.</p>
+					<p>Hay tres posibilidades:</p>
+				<ul class="list-unstyled">
+					<li>Si ganamos la justa (nuestra carta es de mayor coste) multiplicaremos nuestro marcador final y nuestras cartas no se veran afectadas.</li>
+					<li>Si perdemos la justa (la carta de nuestro oponente es de mayor coste) podran ocurrir tres situaciones en funcion del modo de juego:</li>
+						<ol>
+							<li>En el modo facil, todas nuestras cartas seran volteadas.</li>
+							<li>En el modo normal, las cartas que no hayamos acertado se intercambiaran por otras.</li>
+							<li>En el modo dificil, todas las cartas de la mesa se intercambiaran por otras.</li>
+						</ol>
+					<li>Podremos empatar la justa, que no producira ningun cambio en nuestra puntuacion o cartas de la mesa.</li>
+				</ul>
+				</div>
+				</div>
+				<div class="row hide" data-step="5" data-title="Alzate con la victoria!">
+				<div style="float:left; width:50%;">
+				<img src="media/puntuacion.png" alt="" width="90%">
+				</div>
+				<div style="float:right; width:50%;">
+					<p>Al terminar una partida, se nos mostrara una pantalla con la puntuacion que hayamos obtenido, en funcion del modo de juego, el tiempo y las justas que hayamos ganado.</p>
+					<p>Si eres afortunado y te has logueado con tu cuenta de Google, podras optar a entrar en la clasificacion del juego, que esta disponible desde el menu principal.</p>
+					<br>
+					<p>En caso de que pierdas todos tus puntos de vida, perderas la partida y no obtendras ningun punto de clasificacion.</p>
+				</div>
+				</div>
+				<div class="row hide" data-step="6" data-title="O rindete en la batalla!">
+				<div style="float:left; width:50%;">
+				<img src="media/ajustes.png" alt="" width="90%">
+				</div>
+				<div style="float:right; width:50%;">
+					<p>Si por alguna razon tienes que abandonar la partida, o simplemente has escogido un modo de juego demasiado dificil (...o demasiado facil!) puedes optar a rendirte desde el menu de ajustes.</p>
+					<p>El boton para acceder a este menu esta situado en la parte superior derecha del juego</p>
+				</div>
+				</div>
+				<div class="row hide" data-step="7" data-title="Todo listo!">
+				<div style="float:left; width:20%;">
+				<img src="media/win.png" alt="" width="90%">
+				</div>
+				<div style="float:right; width:70%;">
+					<h3>Bien! Acabas de completar con exito el tutorial</h3>
+					<p>Espero verte triunfar en el ranking de clasificaciones.</p>
+				</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default js-btn-step pull-left" data-orientation="cancel" data-dismiss="modal"></button>
+				<button type="button" class="btn btn-warning js-btn-step" data-orientation="previous"></button>
+				<button type="button" class="btn btn-success js-btn-step" data-orientation="next"></button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- FIN MODAL -->
 
 	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
 	<script src="http://biostall.com/wp-content/uploads/2010/07/jquery-swapsies.js"></script>
 	<script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>
+	<script src="https://www.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+	<script src="js/jquery-bootstrap-modal-steps.js"></script>
 	<!-- <script src="js/tiempo.js"></script> -->
 	<script src="js/mdl-jquery-modal-dialog.js"></script>
 	<script src="js/script.js"></script>
 	<!-- <script src="js/script2.js"></script> -->
 	<script>
+$('#myModal').modalSteps();
 	</script>
 </body>
 </html>

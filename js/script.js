@@ -616,6 +616,7 @@ $(".cartahs").on('click',function () {
     cartaslevantadas = [];
     if(muerto==true){
       clearInterval(tiempo_corriendo);
+      $("#boardmusic")[0].pause();
       gameactive = false;
       var puntuacionfix = formatNum(puntuacion,".",",");
       var audiolose = document.createElement('audio');
@@ -676,6 +677,7 @@ $(".cartahs").on('click',function () {
   if(allFlipped() == true){
     clearInterval(tiempo_corriendo);
     gameactive = false;
+    $("#boardmusic")[0].pause();
     segundospunt = (tiempo.hora*3600)+(tiempo.minuto*60)+(tiempo.segundo);
     puntuacion = Math.round((puntbase[modojuego]/(segundospunt/60))*(1+(porcenjusta[modojuego]*justasganadas)));
     var puntuacionfix = formatNum(puntuacion,".",",").toString();
