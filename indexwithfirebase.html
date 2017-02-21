@@ -44,18 +44,39 @@
 		<div id="contenedormenu2">
 			<div id="userNav2">
 				<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" id="botontutorial"></button>
-				<div id="user-container" style="float:right;margin-top:10%; margin-right:10%; background:url('media/loginform.png') no-repeat;background-size:cover;width:30%; height:8%;">
+				<div id="user-container" style="float:right;margin-top:10%; margin-right:10%; background:url('media/alerta.png') no-repeat;background-size:cover;width:30%; height:8%; border-radius:5%;">
 					<div  id="user-pic" style="border-radius:50%; width:10%; float:right;"></div>
-					<div  id="user-name" style="float:right; color:black; font-size: .9em; margin-top:10%;"></div>
+					<div  id="user-name" style="float:right; color:white; font-size: .9em; margin-top:10%;"></div>
 					<button  id="sign-out" onclick="signOut();" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--white" style="clear:both;float:right;">
 						Sign-out
 					</button>
-					<button id="sign-in" onclick="onSignIn()" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--black" style="margin-left:10%; margin-top:8%;">
+					<button id="sign-in" onclick="onSignIn()" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--white" style="margin-left:10%; margin-top:8%;">
 						<i class="material-icons">account_circle</i>Sign-in with Google
 					</button>
 					<!-- <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
 					<a href="#" onclick="signOut();">Sign out</a> -->
 				</div>
+				<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect" style="float:right; width:60%; height:30%; color:black; margin-top:50%; margin-right:10%; background:url('media/ranking.jpg') no-repeat;background-size:cover;">
+  <div class="mdl-tabs__tab-bar">
+      <a href="#facil-panel" class="mdl-tabs__tab is-active">FÁCIL</a>
+      <a href="#normal-panel" class="mdl-tabs__tab">NORMAL</a>
+      <a href="#dificil-panel" class="mdl-tabs__tab">DIFÍCIL</a>
+  </div>
+
+  <div class="mdl-tabs__panel is-active" id="facil-panel" style="text-align:left;">
+    <ol>
+    </ol>
+  </div>
+  <div class="mdl-tabs__panel" id="normal-panel" style="text-align:left;">
+    <ol>
+    </ol>
+  </div>
+  <div class="mdl-tabs__panel" id="dificil-panel" style="text-align:left;">
+    <ol>
+    </ol>
+  </div>
+</div>
+
 			</div>
 
 
@@ -83,7 +104,9 @@
 			<!-- </p> -->
 		</div>
 		<!-- <button id="nextCard" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" >Loading Data...</button> -->
-		<div id="vidauser"  style="position:absolute; z-index:200; width:15%; height:27%; margin-left:48%; margin-top:45%;">
+<div id="fotouser"  style="position:absolute; z-index:200; width:15%; height:27%; margin-left:40.5%; margin-top:41%;">
+</div>
+		<div id="vidauser"  style="position:absolute; z-index:200; width:15%; height:27%; margin-left:48%; margin-top:45%; border-radius:50%;">
 		<span id="spanvida"style="
    margin-left: 4%;
    margin-top: 11%;
@@ -202,7 +225,7 @@
 </div>
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
+	<div class="modal-dialog" style="margin-top:-7%;">
 		<div class="modal-content" id="modalayuda">
 			<div class="modal-header">
 				<h4 class="js-title-step"></h4>
@@ -243,7 +266,7 @@
 				</div>
 				<div class="row hide" data-step="4" data-title="La justa">
 				<div style="float:left; width:35%;">
-				<img src="media/justa.gif" alt="" width="80%">
+				<img src="media/justa.gif" alt="" width="60%">
 				<p style="font-size:10px;">Ejemplo de justa perdida.</p>
 				</div>
 				<div style="float:right; width:65%;">
@@ -322,7 +345,7 @@ firebase.initializeApp(config);
 	<script src="js/jquery-bootstrap-modal-steps.js"></script>
 	<!-- <script src="js/tiempo.js"></script> -->
 	<script src="js/mdl-jquery-modal-dialog.js"></script>
-	<script src="js/firebase2.js"></script>
+	<!-- <script src="js/firebase2.js"></script> -->
 	<script src="js/script.js"></script>
 	<!-- <script src="js/script2.js"></script> -->
 	<script>

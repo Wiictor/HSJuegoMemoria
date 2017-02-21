@@ -1,3 +1,121 @@
+var provider = new firebase.auth.GoogleAuthProvider();
+var database = firebase.database();
+provider.addScope('https://www.googleapis.com/auth/plus.login');
+var rankingRef = firebase.database().ref("/puntuacion/0/").orderByChild('puntuacion').limitToLast(5);
+var rankingRef1 = firebase.database().ref("/puntuacion/1/").orderByChild('puntuacion').limitToLast(5);
+var rankingRef2 = firebase.database().ref("/puntuacion/2/").orderByChild('puntuacion').limitToLast(5);
+rankingRef.on('value', function(snapshot) {
+  console.log(snapshot.val());
+  var puntuaciones = [];
+  var nombres = [];
+  var fotos = [];
+  snapshot.forEach(function(datos) {
+    var tmp = datos.val();
+    puntuaciones.push(tmp.puntuacion);
+    nombres.push(tmp.nombre);
+    fotos.push(tmp.fotoUrl);
+  });
+  var salida = "";
+  for(var i = puntuaciones.length-1; i >= 0;i--){
+    var subnombre = nombres[i];
+    salida += "<li><img src='"+fotos[i]+"' width='5%'/>" + subnombre.substr(0,10) + ", puntuacion: " + puntuaciones[i]+"</li>";
+  }
+  $("#facil-panel ol").html(salida);
+});
+rankingRef1.on('value', function(snapshot) {
+  console.log(snapshot.val());
+  var puntuaciones = [];
+  var nombres = [];
+  var fotos = [];
+  snapshot.forEach(function(datos) {
+    var tmp = datos.val();
+    puntuaciones.push(tmp.puntuacion);
+    nombres.push(tmp.nombre);
+    fotos.push(tmp.fotoUrl);
+  });
+  var salida = "";
+  for(var i = puntuaciones.length-1; i >= 0;i--){
+    var subnombre = nombres[i];
+    salida += "<li><img src='"+fotos[i]+"' width='5%'/>" + subnombre.substr(0,10) + ", puntuacion: " + puntuaciones[i]+"</li>";
+  }
+  $("#normal-panel ol").html(salida);
+});
+rankingRef2.on('value', function(snapshot) {
+  console.log(snapshot.val());
+  var puntuaciones = [];
+  var nombres = [];
+  var fotos = [];
+  snapshot.forEach(function(datos) {
+    var tmp = datos.val();
+    puntuaciones.push(tmp.puntuacion);
+    nombres.push(tmp.nombre);
+    fotos.push(tmp.fotoUrl);
+  });
+  var salida = "";
+  for(var i = puntuaciones.length-1; i >= 0;i--){
+    var subnombre = nombres[i];
+    salida += "<li><img src='"+fotos[i]+"' width='5%'/>" + subnombre.substr(0,10) + ", puntuacion: " + puntuaciones[i]+"</li>";
+  }
+  $("#dificil-panel ol").html(salida);
+});
+$("sign-in").show();
+$("#user-pic").hide();
+$("#user-name").hide();
+$("#sign-out").hide();
+var token = undefined;
+var user = undefined;
+var profilePicUrl = undefined;
+var userName = undefined;
+function onSignIn() {
+          firebase.auth().signInWithPopup(provider).then(function(result) {
+        token = result.credential.accessToken;
+        user = result.user;
+        profilePicUrl = user.photoURL;
+        userName = user.displayName;
+        $("#fotouser").html('<img src="'+profilePicUrl+'" alt="" style="border-radius:50%;width:40%;">');
+        $("#user-pic").html("<img src='"+profilePicUrl+"' style='border-radius:50%; width:100%'/>");
+        $("#user-name").text(userName);
+        $("#user-pic").css('display','block');
+        $("#user-name").css('display','block');
+        $("#sign-out").css('display','block');
+        $("#sign-in").css('display','none');
+        }).catch(function(error) {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        var email = error.email;
+        var credential = error.credential;
+        });
+      };
+
+function signOut() {
+          firebase.auth().signOut().then(function() {
+            token = undefined;
+            user = undefined;
+            profilePicUrl = undefined;
+            userName = undefined;
+            $("#fotouser").html('');
+            $("#user-pic").css('display','none');
+            $("#user-name").css('display','none');
+            $("#sign-out").css('display','none');
+            $("#sign-in").css('display','block');
+        }, function(error) {
+        });
+      }
+function enviaPuntuacion(puntuacion,modo){
+  if(token!=undefined){
+var puntuacionRef = firebase.database().ref();
+var postData = {
+  fotoUrl: profilePicUrl,
+  nombre: userName,
+  puntuacion: puntuacion
+};
+var newPostKey = firebase.database().ref().child('/puntuacion/'+modo).push().key;
+var updates = {};
+  updates['/puntuacion/'+ modo +'/'+ newPostKey] = postData;
+
+return firebase.database().ref().update(updates);
+}
+}
 var cards;
 var dataPromise;
 var a = {};
@@ -680,6 +798,7 @@ $(".cartahs").on('click',function () {
     $("#boardmusic")[0].pause();
     segundospunt = (tiempo.hora*3600)+(tiempo.minuto*60)+(tiempo.segundo);
     puntuacion = Math.round((puntbase[modojuego]/(segundospunt/60))*(1+(porcenjusta[modojuego]*justasganadas)));
+    enviaPuntuacion(puntuacion,modojuego);
     var puntuacionfix = formatNum(puntuacion,".",",").toString();
     var audiowin = document.createElement('audio');
     audiowin.src = "sounds/victory.ogg";
